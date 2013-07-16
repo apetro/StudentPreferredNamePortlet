@@ -23,6 +23,23 @@
 <%@ include file="/WEB-INF/jsp/include.jsp"%>
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
 
+<portlet:renderURL portletMode="VIEW" var="editPreferredNameURL">
+  <portlet:param name="action" value="edit" />
+</portlet:renderURL>
+
 <div id="${n}student-preferred-name" class="student-preferred-name">
-  hello world
+  <table>
+  	<tr>
+  		<th><spring:message code="label.official.name"/></th>
+  		<td><!-- TODO: DIsplay name --></td>
+  	</tr>
+  	<tr>
+  		<th><spring:message code="label.preferred.name"/></th>
+  		<td><!-- TODO: DIsplay name --><a href="${editPreferredNameURL }"><spring:message code="edit"/></a></td>
+  	</tr>
+  	<tr>
+  		<th><spring:message code="label.status"/></th>
+  		<td><!-- TODO: DIsplay name --></td>
+  	</tr>
+  </table>
 </div>
