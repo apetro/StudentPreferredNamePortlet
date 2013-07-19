@@ -41,29 +41,15 @@
             <title>Student Preferred Name</title>
             <short-title>Student Preferred Name</short-title>
         </portlet-info>
-        <portlet-preferences>
+        <portlet-preferences> 
             <preference>
-              <name>pviUserAttributes</name>
-              <value>wiscedupvi</value>
+              <name>displayName</name>
+              <value>displayName</value>
             </preference>
         </portlet-preferences>
     </portlet>
     
     <user-attribute>
-        <name>wiscedupvi</name>
+        <name>displayName</name>
     </user-attribute>
-    
-    <filter>
-        <filter-name>springSecurityPortletFilterChain</filter-name>
-        <filter-class>org.jasig.springframework.web.portlet.filter.DelegatingPortletFilterProxy</filter-class>
-        <lifecycle>ACTION_PHASE</lifecycle>
-        <lifecycle>EVENT_PHASE</lifecycle>
-        <lifecycle>RENDER_PHASE</lifecycle>
-        <lifecycle>RESOURCE_PHASE</lifecycle>
-    </filter>
-    
-    <filter-mapping>
-        <filter-name>springSecurityPortletFilterChain</filter-name>
-        <portlet-name>*</portlet-name>
-    </filter-mapping>
 </portlet-app>

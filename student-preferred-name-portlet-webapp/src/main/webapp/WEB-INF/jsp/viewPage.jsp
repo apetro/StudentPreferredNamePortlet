@@ -30,16 +30,16 @@
 <div id="${n}student-preferred-name" class="student-preferred-name">
   <table>
   	<tr>
-  		<th><spring:message code="label.official.name"/></th>
-  		<td><!-- TODO: DIsplay name --></td>
+  		<td><span class="uportal-channel-strong"><spring:message code="label.official.name"/></span></td>
+  		<td>${displayName}</td>
   	</tr>
   	<tr>
-  		<th><spring:message code="label.preferred.name"/></th>
-  		<td><!-- TODO: DIsplay name --><a href="${editPreferredNameURL }"><spring:message code="edit"/></a></td>
+  		<td><span class="uportal-channel-strong"><spring:message code="label.preferred.name"/></span></td>
+  		<td>${firstName}&nbsp;${middleName}&nbsp;<a href="${editPreferredNameURL }"><spring:message code="edit"/></a></td>
   	</tr>
   	<tr>
-  		<th><spring:message code="label.status"/></th>
-  		<td><!-- TODO: DIsplay name --></td>
+  		<td><span class="uportal-channel-strong"><spring:message code="label.status"/></span></td>
+  		<td>${pendingStatus }</td>
   	</tr>
   </table>
 </div>
