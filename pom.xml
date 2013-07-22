@@ -118,6 +118,7 @@
 
     <modules>
         <module>student-preferred-name-portlet-api</module>
+        <module>student-preferred-name-portlet-stored-proc-impl</module>
         <module>student-preferred-name-portlet-webapp</module>
     </modules>
     

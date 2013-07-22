@@ -12,11 +12,11 @@ public class PreferredName implements Serializable {
     @NotNull
     private String middleName;
     
+    private String pvi;
+    
 	public String getFirstName() {
 		return firstName;
 	}
-
-
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -32,6 +32,14 @@ public class PreferredName implements Serializable {
 
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
+	}
+	
+	public void setPvi(String pvi) {
+		this.pvi = pvi;
+	}
+	
+	public String getPvi() {
+		return this.pvi;
 	}
 
 

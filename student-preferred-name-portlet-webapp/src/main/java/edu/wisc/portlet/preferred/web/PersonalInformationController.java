@@ -9,6 +9,7 @@ import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 import javax.validation.Valid;
 
+import org.jasig.springframework.security.portlet.authentication.PrimaryAttributeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -33,8 +34,8 @@ public class PersonalInformationController {
 	
 	@RenderMapping
 	public String initializeView(ModelMap modelMap, RenderRequest request) {
-		
-		PreferredName preferredName = preferredNameService.getPreferredName();
+		final String pvi = PrimaryAttributeUtils.getPrimaryId();
+		PreferredName preferredName = preferredNameService.getPreferredName(pvi);
 		@SuppressWarnings("unchecked")
 		Map<String, String> userInfo = (Map <String, String>) request.getAttribute(PortletRequest.USER_INFO);
 		
@@ -56,7 +57,10 @@ public class PersonalInformationController {
 		//validation
 		if(!bindingResult.hasErrors()) {
 			//submit changes to DAO
+			final String pvi = PrimaryAttributeUtils.getPrimaryId();
+			preferredName.setPvi(pvi);
 			
+			preferredNameService.setPreferredName(preferredName);
 			//redirect to view page on success
 			response.setPortletMode(PortletMode.VIEW);
 		} else {

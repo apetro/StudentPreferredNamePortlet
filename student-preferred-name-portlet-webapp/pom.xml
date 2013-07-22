@@ -13,6 +13,12 @@
             <artifactId>student-preferred-name-portlet-api</artifactId>
             <version>${project.version}</version>
         </dependency>
+        
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>student-preferred-name-portlet-stored-proc-impl</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     
         <!-- ===== Compile Time Dependencies ============================== -->
         <dependency>

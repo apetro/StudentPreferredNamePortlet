@@ -79,4 +79,12 @@
         <property name="includeMethod" value="false" />
         <property name="includeParameterTypes" value="false" />
     </bean>
+    
+    <bean id="primaryAttributePortletPreAuthenticatedAuthenticationDetailsSource" class="org.jasig.springframework.security.portlet.authentication.PrimaryAttributePortletPreAuthenticatedAuthenticationDetailsSource">
+         <property name="primaryUserAttributesPreference" value="pviUserAttributes" />
+         <property name="mappableRolesRetriever">
+             <!-- Configurable - gets list of roles to check request.isUserInRole for. Default is to parse from portlet.xml -->
+             <bean class="org.jasig.springframework.security.portlet.authentication.PortletXmlMappableAttributesRetriever" />
+         </property>
+     </bean>
 </beans>

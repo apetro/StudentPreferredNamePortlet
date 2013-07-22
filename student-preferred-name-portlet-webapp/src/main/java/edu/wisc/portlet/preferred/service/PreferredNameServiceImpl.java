@@ -1,20 +1,25 @@
-package edu.wisc.portlet.preferred.web;
+package edu.wisc.portlet.preferred.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.wisc.portlet.preferred.dao.PreferredNameDao;
 import edu.wisc.portlet.preferred.form.PreferredName;
 import edu.wisc.portlet.preferred.service.PreferredNameService;
 
 @Service
 public class PreferredNameServiceImpl implements PreferredNameService {
 
-	public PreferredNameServiceImpl() {
-		// TODO Auto-generated constructor stub
-	}
+	private PreferredNameDao dao;
 
+	@Autowired
+	public void setPreferredNameDao(PreferredNameDao dao) {
+		this.dao = dao;
+	}
+	
 	@Override
-	public PreferredName getPreferredName() {
-		return new PreferredName("super","awesome");
+	public PreferredName getPreferredName(String pvi) {
+		dao.getPreferredName(pvi)
 	}
 
 	@Override
