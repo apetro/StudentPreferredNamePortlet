@@ -6,6 +6,7 @@
     <version>1.0.4-SNAPSHOT</version>
   </parent>
   <artifactId>student-preferred-name-portlet-webapp</artifactId>
+  <packaging>war</packaging>
   
   <dependencies>
         <dependency>
