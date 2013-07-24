@@ -48,7 +48,7 @@
         <property name="assembler" ref="mbeanInfoAssembler" />
         <property name="beans">
             <map>
-                <entry key="AdvisorReportsPortlet:section=WebServices,name=HttpConnectionPool" value-ref="connPoolControlData"/>
+                <entry key="PrefNamePortlet:section=WebServices,name=HttpConnectionPool" value-ref="connPoolControlData"/>
             </map>
         </property>
     </bean>  

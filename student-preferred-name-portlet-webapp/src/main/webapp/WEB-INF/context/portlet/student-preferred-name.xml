@@ -32,6 +32,8 @@
     <!-- Annotations Configuration -->
     <context:annotation-config/>
     <context:component-scan base-package="edu.wisc.portlet.preferred.web"/>
+    <context:component-scan base-package="edu.wisc.portlet.preferred.service"/>
+    <context:component-scan base-package="edu.wisc.portlet.preferred.dao"/>
     
     <!--
      Spring MVC JSR-303 Validation Setup Resolution For Portlets

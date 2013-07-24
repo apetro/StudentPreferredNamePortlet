@@ -34,10 +34,14 @@ public class PersonalInformationController {
 	
 	@RenderMapping
 	public String initializeView(ModelMap modelMap, RenderRequest request) {
-		final String pvi = PrimaryAttributeUtils.getPrimaryId();
-		PreferredName preferredName = preferredNameService.getPreferredName(pvi);
 		@SuppressWarnings("unchecked")
 		Map<String, String> userInfo = (Map <String, String>) request.getAttribute(PortletRequest.USER_INFO);
+		
+		/*
+		final String pvi = userInfo.get("wiscedupvi");*/
+		final String pvi = PrimaryAttributeUtils.getPrimaryId();
+		PreferredName preferredName = preferredNameService.getPreferredName(pvi);
+		
 		
 		modelMap.addAttribute("firstName", preferredName.getFirstName());
 		modelMap.addAttribute("middleName", preferredName.getMiddleName());

@@ -19,7 +19,7 @@ public class PreferredNameServiceImpl implements PreferredNameService {
 	
 	@Override
 	public PreferredName getPreferredName(String pvi) {
-		dao.getPreferredName(pvi)
+		return dao.getPreferredName(pvi);
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class PreferredNameServiceImpl implements PreferredNameService {
 
 	@Override
 	public void setPreferredName(PreferredName pn) {
-		// TODO Auto-generated method stub
+		dao.setPreferredName(pn);
 
 	}
 
