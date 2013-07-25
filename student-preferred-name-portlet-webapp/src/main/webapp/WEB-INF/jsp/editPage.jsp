@@ -27,7 +27,15 @@
 </portlet:actionURL>
 <form action="${savePreferredNameURL}" method="post">
 	<spring:nestedPath path="PreferredName">
-	First name: <form:input path="firstName" style="width: 50%;" class="uportal-input-text" />&nbsp;&nbsp;<form:errors path="firstName" cssClass="error"/>
-	Middle Name: <form:input path="middleName" style="width: 50%;" class="uportal-input-text" />&nbsp;&nbsp;<form:errors path="middleName" cssClass="error"/>
+	<span class="uportal-channel-strong">First name:</span>&nbsp;&nbsp;<form:input path="firstName" class="uportal-input-text" />&nbsp;&nbsp;<form:errors path="firstName" cssClass="error"/>
+	<br/>
+	<span class="uportal-channel-strong">Middle Name:</span>&nbsp;<form:input path="middleName" class="uportal-input-text" />&nbsp;&nbsp;<form:errors path="middleName" cssClass="error"/>
+	
+	<br/><br/>
+	<spring:message code="savePreferredName" var="savePreferredName" text="Save"/>
+    <input class="uportal-button" value="${savePreferredName}" type="submit">
+    
+    <portlet:renderURL var="cancelAction" portletMode="VIEW" windowState="NORMAL" />
+    <a href="${cancelAction}" class="uportal-button"><spring:message code="cancel" text="cancel"/></a>
 	</spring:nestedPath>
 </form>

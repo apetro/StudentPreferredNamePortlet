@@ -42,17 +42,33 @@ public class PersonalInformationController {
 		final String pvi = PrimaryAttributeUtils.getPrimaryId();
 		PreferredName preferredName = preferredNameService.getPreferredName(pvi);
 		
+		String currentFirstName = userInfo.get("wiscedupreferredfirstname");
+		String currentMiddleName = userInfo.get("wiscedupreferredmiddlename");
 		
-		modelMap.addAttribute("firstName", preferredName.getFirstName());
-		modelMap.addAttribute("middleName", preferredName.getMiddleName());
-		modelMap.addAttribute("pendingStatus",preferredNameService.isPending() ? "Pending" : "Approved");
+		if(preferredName != null) {
+			modelMap.addAttribute("firstName", preferredName.getFirstName());
+			modelMap.addAttribute("middleName", preferredName.getMiddleName());
+			modelMap.addAttribute("pendingStatus",preferredNameService.getStatus(new PreferredName(currentFirstName, currentMiddleName,pvi)));
+		}
 		modelMap.addAttribute("displayName",userInfo.get("displayName"));
 		
 		return "viewPage";
 	}
 	
 	@RenderMapping(params="action=edit")
-	public String initializeEdit() {
+	public String initializeEdit(ModelMap modelMap, RenderRequest request) {
+		@SuppressWarnings("unchecked")
+		Map<String, String> userInfo = (Map <String, String>) request.getAttribute(PortletRequest.USER_INFO);
+		
+		final String pvi = PrimaryAttributeUtils.getPrimaryId();
+		PreferredName preferredName = preferredNameService.getPreferredName(pvi);
+		
+		if(preferredName != null) {
+			modelMap.addAttribute("PreferredName", preferredName);
+		} else {
+			modelMap.addAttribute("PreferredName", new PreferredName());
+		}
+		
 		return "editPage";
 	}
 	

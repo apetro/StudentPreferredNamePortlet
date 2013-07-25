@@ -59,6 +59,15 @@
     <user-attribute>
     	<name>wiscedupvi</name>
     </user-attribute>
+    <user-attribute>
+    	<name>wiscedupreferredname</name>
+    </user-attribute>
+    <user-attribute>
+    	<name>wiscedupreferredmiddlename</name>
+    </user-attribute>
+    <user-attribute>
+    	<name>wiscedupreferredfirstname</name>
+    </user-attribute>
     
     <filter>
         <filter-name>springSecurityPortletFilterChain</filter-name>

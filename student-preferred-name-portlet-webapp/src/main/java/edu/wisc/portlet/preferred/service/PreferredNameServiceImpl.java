@@ -23,9 +23,17 @@ public class PreferredNameServiceImpl implements PreferredNameService {
 	}
 
 	@Override
-	public boolean isPending() {
-		// TODO Auto-generated method stub
-		return false;
+	public String getStatus(PreferredName pn) {
+		if(pn.getFirstName() == null && pn.getMiddleName() == null) {
+			return "n/a";
+		} else {
+			PreferredName preferredName = dao.getPreferredName(pn.getPvi());
+			if(pn.equals(preferredName)) {
+				return "Complete";
+			} else {
+				return "Pending";
+			}
+		}
 	}
 
 	@Override

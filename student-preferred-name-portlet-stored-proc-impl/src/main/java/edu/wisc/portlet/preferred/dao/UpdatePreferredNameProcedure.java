@@ -14,7 +14,7 @@ import edu.wisc.portlet.preferred.form.PreferredName;
 public class UpdatePreferredNameProcedure extends StoredProcedure {
 
     public UpdatePreferredNameProcedure(DataSource dataSource) {
-        super(dataSource, "mstprefname.LOAD_PREFERRED_NAME");
+        super(dataSource, "msnprefname.LOAD_PREFERRED_NAME");
         
         this.declareParameter(new SqlParameter("pvi", Types.VARCHAR));
         this.declareParameter(new SqlParameter("firstName", Types.VARCHAR));
