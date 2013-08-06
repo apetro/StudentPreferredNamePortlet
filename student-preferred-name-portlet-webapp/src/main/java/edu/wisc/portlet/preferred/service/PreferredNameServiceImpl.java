@@ -1,5 +1,6 @@
 package edu.wisc.portlet.preferred.service;
 
+import org.jvnet.jaxb2_commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,15 +24,20 @@ public class PreferredNameServiceImpl implements PreferredNameService {
 	}
 
 	@Override
-	public String getStatus(PreferredName pn) {
-		if(pn.getFirstName() == null && pn.getMiddleName() == null) {
-			return "n/a";
+	public String getStatus(PreferredName ldapPn) {
+		PreferredName jdbcPn = dao.getPreferredName(ldapPn.getPvi());
+		if(ldapPn.getFirstName() == null && ldapPn.getMiddleName() == null 
+				&& (jdbcPn == null 
+					|| (StringUtils.isEmpty(jdbcPn.getFirstName()) && StringUtils.isEmpty(jdbcPn.getMiddleName()))
+				   )
+		) {
+			return "(not set)";
 		} else {
-			PreferredName preferredName = dao.getPreferredName(pn.getPvi());
-			if(pn.equals(preferredName)) {
-				return "Complete";
+			
+			if(ldapPn.equals(jdbcPn)) {
+				return "";
 			} else {
-				return "Pending";
+				return "(pending)";
 			}
 		}
 	}

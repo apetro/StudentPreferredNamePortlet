@@ -35,11 +35,7 @@
   	</tr>
   	<tr>
   		<td><span class="uportal-channel-strong"><spring:message code="label.preferred.name"/></span></td>
-  		<td>${firstName}&nbsp;${middleName}&nbsp;<a href="${editPreferredNameURL }"><spring:message code="edit"/></a></td>
-  	</tr>
-  	<tr>
-  		<td><span class="uportal-channel-strong"><spring:message code="label.status"/></span></td>
-  		<td>${pendingStatus }</td>
+  		<td>${firstName}&nbsp;${middleName}&nbsp;<span class="uportal-channel-table-caption">${pendingStatus }</span>&nbsp;<a href="${editPreferredNameURL }"><spring:message code="edit"/></a></td>
   	</tr>
   </table>
 </div>
