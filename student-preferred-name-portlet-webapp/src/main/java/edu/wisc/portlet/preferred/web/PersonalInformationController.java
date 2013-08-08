@@ -14,11 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.portlet.bind.annotation.ActionMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 
 import edu.wisc.portlet.preferred.form.PreferredName;
+import edu.wisc.portlet.preferred.form.validator.PreferredNameValidator;
 import edu.wisc.portlet.preferred.service.PreferredNameService;
 
 @Controller
@@ -57,24 +60,24 @@ public class PersonalInformationController {
 	
 	@RenderMapping(params="action=edit")
 	public String initializeEdit(ModelMap modelMap, RenderRequest request) {
-		@SuppressWarnings("unchecked")
-		Map<String, String> userInfo = (Map <String, String>) request.getAttribute(PortletRequest.USER_INFO);
-		
-		final String pvi = PrimaryAttributeUtils.getPrimaryId();
-		PreferredName preferredName = preferredNameService.getPreferredName(pvi);
-		
-		if(preferredName != null) {
-			modelMap.addAttribute("PreferredName", preferredName);
-		} else {
-			modelMap.addAttribute("PreferredName", new PreferredName());
+		if(!modelMap.containsKey("preferredName")) {
+			final String pvi = PrimaryAttributeUtils.getPrimaryId();
+			PreferredName preferredName = preferredNameService.getPreferredName(pvi);
+			
+			if(preferredName != null) {
+				modelMap.addAttribute("preferredName", preferredName);
+			} else {
+				modelMap.addAttribute("preferredName", new PreferredName());
+			}
 		}
 		
 		return "editPage";
 	}
 	
 	@ActionMapping(params="action=savePreferredName")
-	public void submitEdit(ActionResponse response, @Valid PreferredName preferredName, BindingResult bindingResult) throws PortletModeException {
+	public void submitEdit(ActionResponse response, PreferredName preferredName, BindingResult bindingResult) throws PortletModeException {
 		//validation
+		ValidationUtils.invokeValidator(new PreferredNameValidator(), preferredName, bindingResult);
 		if(!bindingResult.hasErrors()) {
 			//submit changes to DAO
 			final String pvi = PrimaryAttributeUtils.getPrimaryId();

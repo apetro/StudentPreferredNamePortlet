@@ -38,10 +38,20 @@
     <!--
      Spring MVC JSR-303 Validation Setup Resolution For Portlets
      http://stackoverflow.com/questions/4283611/spring-portlet-mvc-valid-does-not-seem-to-work/4284336#4284336
-    -->
+-->
     <mvc:annotation-driven validator="validator" />
 
     <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
+    <bean id="annotationMethodHandlerAdapter" class="org.springframework.web.portlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+        <property name="webBindingInitializer">
+            <bean id="configurableWebBindingInitializer" class="org.springframework.web.bind.support.ConfigurableWebBindingInitializer">
+                <property name="validator">
+                    <ref bean="validator"/>
+                </property>
+            </bean>
+        </property>
+    </bean>
     
     <bean class="org.springframework.web.portlet.mvc.annotation.DefaultAnnotationHandlerMapping">
         <property name="interceptors" ref="defaultPortletInterceptors" />

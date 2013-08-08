@@ -8,11 +8,8 @@ import javax.validation.constraints.NotNull;
 public class PreferredName implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    @NotNull
-    @Max(30)
     private String firstName;
-    @NotNull
-    @Max(30)
+    
     private String middleName;
     
     private String pvi;
@@ -25,13 +22,9 @@ public class PreferredName implements Serializable {
 		this.firstName = firstName;
 	}
 
-
-
 	public String getMiddleName() {
 		return middleName;
 	}
-
-
 
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
