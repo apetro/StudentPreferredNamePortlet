@@ -27,10 +27,10 @@
 </portlet:actionURL>
 <form action="${savePreferredNameURL}" method="post">
 	<spring:nestedPath path="preferredName">
-	<span class="uportal-channel-strong">First name:</span>&nbsp;&nbsp;<form:input path="firstName" class="uportal-input-text" maxlength="30" />&nbsp;&nbsp;<form:errors path="firstName" cssClass="portlet-msg-error"/>
+	<span class="uportal-channel-strong">Preferred First Name:</span>&nbsp;&nbsp;<form:input path="firstName" class="uportal-input-text" maxlength="30" />&nbsp;&nbsp;<form:errors path="firstName" cssClass="portlet-msg-error"/>
 	<br/>
 	<br/>
-	<span class="uportal-channel-strong">Middle Name:</span>&nbsp;<form:input path="middleName" class="uportal-input-text" maxlength="30" />&nbsp;&nbsp;<form:errors path="middleName" cssClass="portlet-msg-error"/>
+	<span class="uportal-channel-strong">Preferred Middle Name:</span>&nbsp;<form:input path="middleName" class="uportal-input-text" maxlength="30" />&nbsp;&nbsp;<form:errors path="middleName" cssClass="portlet-msg-error"/>
 	
 	<br/><br/><br/>
 	<spring:message code="savePreferredName" var="savePreferredName" text="Save"/>
