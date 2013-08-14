@@ -26,7 +26,8 @@ public class PreferredNameServiceImpl implements PreferredNameService {
 	@Override
 	public String getStatus(PreferredName ldapPn) {
 		PreferredName jdbcPn = dao.getPreferredName(ldapPn.getPvi());
-		if(ldapPn.getFirstName() == null && ldapPn.getMiddleName() == null 
+		if(StringUtils.isEmpty(ldapPn.getFirstName()) 
+				&& StringUtils.isEmpty(ldapPn.getMiddleName()) 
 				&& (jdbcPn == null 
 					|| (StringUtils.isEmpty(jdbcPn.getFirstName()) && StringUtils.isEmpty(jdbcPn.getMiddleName()))
 				   )

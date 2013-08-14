@@ -63,7 +63,6 @@ public class PreferredName implements Serializable {
 				+ ((firstName == null) ? 0 : firstName.hashCode());
 		result = prime * result
 				+ ((middleName == null) ? 0 : middleName.hashCode());
-		result = prime * result + ((pvi == null) ? 0 : pvi.hashCode());
 		return result;
 	}
 
@@ -79,21 +78,15 @@ public class PreferredName implements Serializable {
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;
-		} else if (!firstName.equals(other.firstName))
+		} else if (!firstName.equalsIgnoreCase(other.firstName))
 			return false;
 		if (middleName == null) {
 			if (other.middleName != null)
 				return false;
-		} else if (!middleName.equals(other.middleName))
-			return false;
-		if (pvi == null) {
-			if (other.pvi != null)
-				return false;
-		} else if (!pvi.equals(other.pvi))
+		} else if (!middleName.equalsIgnoreCase(other.middleName))
 			return false;
 		return true;
 	}
 	
 	
-
 }
