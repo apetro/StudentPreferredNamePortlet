@@ -31,7 +31,7 @@ public class PreferredNameValidator implements Validator {
 			errors.rejectValue("middleName", "error.toolong");
 		}
 		
-		String regx = "^[\\p{L} .'-]+$";
+		final String regx = "^[A-Za-z .-]+$";
 		Pattern ptrn = Pattern.compile(regx);
 		Matcher fnameMatcher = ptrn.matcher(pn.getFirstName());
 		Matcher mnameMatcher = ptrn.matcher(pn.getMiddleName());
