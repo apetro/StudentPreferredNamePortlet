@@ -51,6 +51,7 @@ public class PersonalInformationController {
 			modelMap.addAttribute("middleName", preferredName.getMiddleName());
 			modelMap.addAttribute("pendingStatus",preferredNameService.getStatus(new PreferredName(currentFirstName, currentMiddleName,pvi)));
 		}
+		modelMap.addAttribute("sirName",userInfo.get("sn"));
 		modelMap.addAttribute("displayName",userInfo.get("displayName"));
 		
 		return "viewPage";
