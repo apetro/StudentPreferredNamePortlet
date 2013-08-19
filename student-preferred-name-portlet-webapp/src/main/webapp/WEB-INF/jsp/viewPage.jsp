@@ -38,4 +38,9 @@
   		<td>${firstName}&nbsp;${middleName}&nbsp;${sirName}&nbsp;<span class="uportal-channel-table-caption">${pendingStatus }</span>&nbsp;<a href="${editPreferredNameURL }"><spring:message code="edit"/></a></td>
   	</tr>
   </table>
+  <c:if test="${!empty prefs['notice'][0]}">
+	  <p>
+	  	${prefs['notice'][0]}
+	  </p>
+  </c:if>
 </div>
