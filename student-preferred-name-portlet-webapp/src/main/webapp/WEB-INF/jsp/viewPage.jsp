@@ -27,20 +27,79 @@
   <portlet:param name="action" value="edit" />
 </portlet:renderURL>
 
+<portlet:actionURL portletMode="VIEW" var="savePreferredNameURL">
+  <portlet:param name="action" value="savePreferredName" />
+</portlet:actionURL>
+
+<portlet:renderURL var="cancelAction" portletMode="VIEW" windowState="NORMAL" />
+
+<spring:message code="savePreferredName" var="savePreferredName" text="Save"/>
+
 <div id="${n}student-preferred-name" class="student-preferred-name">
-  <table>
-  	<tr>
-  		<td><span class="uportal-channel-strong"><spring:message code="label.official.name"/></span></td>
-  		<td>${displayName}</td>
-  	</tr>
-  	<tr>
-  		<td><span class="uportal-channel-strong"><spring:message code="label.preferred.name"/></span></td>
-  		<td>${firstName}&nbsp;${middleName}&nbsp;${sirName}&nbsp;<span class="uportal-channel-table-caption">${pendingStatus }</span>&nbsp;<a href="${editPreferredNameURL }"><spring:message code="edit"/></a></td>
-  	</tr>
-  </table>
+<form action="${savePreferredNameURL}" method="post">
+	<spring:nestedPath path="preferredName">
+	  <table>
+	  	<tr>
+	  		<td><span class="uportal-channel-strong"><spring:message code="label.official.name"/></span></td>
+	  		<td>${displayName}</td>
+	  	</tr>
+	  	<tr class='${n}view'>
+	  		<td><span class="uportal-channel-strong"><spring:message code="label.preferred.name"/></span></td>
+	  		<td>${firstName}&nbsp;${middleName}&nbsp;${sirName}&nbsp;<span class="uportal-channel-table-caption">${pendingStatus }</span>&nbsp;<a href="#" onclick="studentPreferredNamePortlet.displayEdit(true);"><spring:message code="edit"/></a></td>
+	  	</tr>
+	  	<tr class='${n}edit-error'>
+	  	<td>&nbsp;</td>
+	  	<td style='padding: .5em;'><form:errors path="firstName" cssClass="portlet-msg-error"/>&nbsp;<form:errors path="middleName" cssClass="portlet-msg-error"/></td>
+	  	</tr>
+	  	<tr class='${n}edit'>
+	  		<td><span class="uportal-channel-strong"><spring:message code="label.preferred.name"/></span></td>
+	  		<td>
+	  			<form:input path="firstName" class="uportal-input-text" maxlength="30" />
+	  			&nbsp;
+	  			<form:input path="middleName" class="uportal-input-text" maxlength="30" />
+	  			&nbsp;${sirName}
+	  			&nbsp;<a href="#" onclick='studentPreferredNamePortlet.displayEdit(false);' class="uportal-button"><spring:message code="cancel" text="Cancel"/></a>
+	  			&nbsp;<input class="uportal-button" value="${savePreferredName}" type="submit">
+	  		</td>
+	  	</tr>
+	  	
+	  </table>
+	</spring:nestedPath>
+</form>
   <c:if test="${!empty prefs['notice'][0]}">
 	  <p>
 	  	${prefs['notice'][0]}
 	  </p>
   </c:if>
 </div>
+
+<script type="text/javascript">
+(function($) {
+   $(document).ready(function() {
+      $(".${n}edit").hide();
+      $(".${n}edit-error").hide();
+      
+      studentPreferredNamePortlet.displayEdit = function (enable) {
+    	  if(enable) {
+    		  $(".${n}edit").show();
+    		  $(".${n}view").hide();
+    	  } else {
+    		  $(".${n}edit").hide();
+    		  $(".${n}view").show();
+    		  
+    	  }
+      }
+   });			
+})(studentPreferredNamePortlet.jQuery);
+</script>
+
+<c:if test="${!empty therewasanerror }">
+<script type="text/javascript">
+(function($) {
+   $(document).ready(function() {
+	   studentPreferredNamePortlet.displayEdit(true);
+	   $(".${n}edit-error").show().delay();
+   });			
+})(studentPreferredNamePortlet.jQuery);	
+</script>
+</c:if>

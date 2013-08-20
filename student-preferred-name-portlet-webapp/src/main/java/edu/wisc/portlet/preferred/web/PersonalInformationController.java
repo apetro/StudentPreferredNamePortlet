@@ -37,22 +37,40 @@ public class PersonalInformationController {
 	
 	@RenderMapping
 	public String initializeView(ModelMap modelMap, RenderRequest request) {
+		
+		//view setup
 		@SuppressWarnings("unchecked")
 		Map<String, String> userInfo = (Map <String, String>) request.getAttribute(PortletRequest.USER_INFO);
-
 		final String pvi = PrimaryAttributeUtils.getPrimaryId();
-		PreferredName preferredName = preferredNameService.getPreferredName(pvi);
 		
+		PreferredName preferredName = preferredNameService.getPreferredName(pvi);
 		String currentFirstName = userInfo.get("wiscedupreferredfirstname");
 		String currentMiddleName = userInfo.get("wiscedupreferredmiddlename");
 		
 		if(preferredName != null) {
+			//view stuff
 			modelMap.addAttribute("firstName", preferredName.getFirstName());
 			modelMap.addAttribute("middleName", preferredName.getMiddleName());
-			modelMap.addAttribute("pendingStatus",preferredNameService.getStatus(new PreferredName(currentFirstName, currentMiddleName,pvi)));
 		}
+		
+		modelMap.addAttribute("pendingStatus",preferredNameService.getStatus(new PreferredName(currentFirstName, currentMiddleName,pvi)));
 		modelMap.addAttribute("sirName",userInfo.get("sn"));
 		modelMap.addAttribute("displayName",userInfo.get("displayName"));
+		
+		
+		//edit setup
+		if(!modelMap.containsKey("preferredName")) {
+		
+			if(preferredName != null) {
+				modelMap.addAttribute("preferredName", preferredName);
+			} else {
+				modelMap.addAttribute("preferredName", new PreferredName());
+			}
+		}
+		
+		if(request.getParameter("therewasanerror") != null) {
+			modelMap.addAttribute("therewasanerror","true");
+		}
 		
 		return "viewPage";
 	}
@@ -70,7 +88,7 @@ public class PersonalInformationController {
 			}
 		}
 		
-		return "editPage";
+		return "viewPage";
 	}
 	
 	@ActionMapping(params="action=savePreferredName")
@@ -86,10 +104,9 @@ public class PersonalInformationController {
 			//redirect to view page on success
 			response.setPortletMode(PortletMode.VIEW);
 		} else {
-			//	fall back to edit page if there were problems
-			response.setRenderParameter("firstName", preferredName.getFirstName());
-			response.setRenderParameter("middleName", preferredName.getMiddleName());
-			response.setRenderParameter("action", "edit");
+			//fail back to edit mode with flag set
+			response.setRenderParameter("therewasanerror", "true");
+			response.setPortletMode(PortletMode.VIEW);
 		}
 	}
 }

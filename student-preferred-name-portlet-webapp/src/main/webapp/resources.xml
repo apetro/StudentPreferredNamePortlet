@@ -26,6 +26,9 @@
   <css import="true">common-resources.xml</css>
   <css>css/spnp.css</css>
     
+  <js included="plain" resource="true">/rs/jquery/1.9.1/jquery-1.9.1.js</js>
+  <js included="aggregated" resource="true">/rs/jquery/1.9.1/jquery-1.9.1.min.js</js>
   <js import="true">common-resources.xml</js>
+  <js>js/portlet.js</js>
     
 </resources>
