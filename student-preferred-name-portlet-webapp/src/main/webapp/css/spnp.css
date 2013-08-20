@@ -12,3 +12,8 @@
 .student-preferred-name .fancy-button:hover {
 	font-weight : bold;
 }
+
+.student-preferred-name .fancy-cancel {
+	background: lightgray;
+	color: black !important;
+}
