@@ -2,3 +2,13 @@
 	font-style: italic;
 	font-size : x-small;
 }
+
+.student-preferred-name .fancy-button {
+	background: #990000;
+	color: white !important;
+	font-weight : normal;
+}
+
+.student-preferred-name .fancy-button:hover {
+	font-weight : bold;
+}

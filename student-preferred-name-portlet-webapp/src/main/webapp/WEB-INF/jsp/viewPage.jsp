@@ -59,7 +59,7 @@
 	  			<form:input path="middleName" class="uportal-input-text" maxlength="30" />
 	  			&nbsp;${sirName}
 	  			&nbsp;<a href="#" onclick='studentPreferredNamePortlet.displayEdit(false);' class="uportal-button"><spring:message code="button.cancel" text="Cancel"/></a>
-	  			&nbsp;<input class="uportal-button" value="${savePreferredName}" type="submit">
+	  			&nbsp;<input class="uportal-button fancy-button" value="${savePreferredName}" type="submit">
 	  		</td>
 	  	</tr>
 	  	
