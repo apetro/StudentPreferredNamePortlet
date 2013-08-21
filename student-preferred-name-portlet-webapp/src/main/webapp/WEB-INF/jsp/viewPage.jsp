@@ -45,7 +45,16 @@
 	  	</tr>
 	  	<tr class='${n}view'>
 	  		<td><span class="uportal-channel-strong"><spring:message code="label.preferred.name"/></span></td>
-	  		<td>${firstName}&nbsp;${middleName}&nbsp;${sirName}&nbsp;<span class="uportal-channel-table-caption">${pendingStatus }</span>&nbsp;<a href="#" onclick="studentPreferredNamePortlet.displayEdit(true);"><spring:message code="edit"/></a></td>
+	  		<td>${firstName}
+	  		    <c:if test="${!empty middleName }">
+	  		    	&nbsp;${middleName}
+	  		    </c:if>
+	  		    <c:if test="${!empty firstName }">
+	  		    	&nbsp;${sirName}
+	  		    </c:if>
+	  		    &nbsp;<span class="uportal-channel-table-caption">${pendingStatus }</span>
+	  		    &nbsp;<a href="#" onclick="studentPreferredNamePortlet.displayEdit(true);"><spring:message code="edit"/></a>
+	  		</td>
 	  	</tr>
 	  	<tr class='${n}edit-error'>
 	  	<td>&nbsp;</td>
@@ -55,8 +64,7 @@
 	  		<td><span class="uportal-channel-strong"><spring:message code="label.preferred.name"/></span></td>
 	  		<td>
 	  			<form:input path="firstName" class="uportal-input-text" maxlength="30" />
-	  			&nbsp;
-	  			<form:input path="middleName" class="uportal-input-text" maxlength="30" />
+	  			&nbsp;<form:input path="middleName" class="uportal-input-text" maxlength="30" />
 	  			&nbsp;${sirName}
 	  			&nbsp;<a href="#" onclick='studentPreferredNamePortlet.displayEdit(false);' class="uportal-button fancy-cancel"><spring:message code="button.cancel" text="Cancel"/></a>
 	  			&nbsp;<input class="uportal-button fancy-button" value="${savePreferredName}" type="submit">
