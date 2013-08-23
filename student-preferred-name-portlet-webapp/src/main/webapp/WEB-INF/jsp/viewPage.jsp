@@ -56,11 +56,10 @@
 	  		    &nbsp;<a href="#" onclick="studentPreferredNamePortlet.displayEdit(true);"><spring:message code="edit"/></a>
 	  		</td>
 	  	</tr>
-	  	<tr class='${n}edit-error'>
-	  	<td>&nbsp;</td>
-	  	<td style='padding: .5em;'><form:errors path="firstName" cssClass="portlet-msg-error"/>&nbsp;<form:errors path="middleName" cssClass="portlet-msg-error"/></td>
+	  	<tr class='${n}edit-error' style="display: none;">
+	  	<td colspan=2 style='padding: .5em;'><form:errors path="firstName" cssClass="portlet-msg-error"/>&nbsp;<form:errors path="middleName" cssClass="portlet-msg-error"/></td>
 	  	</tr>
-	  	<tr class='${n}edit'>
+	  	<tr class='${n}edit' style="display: none;">
 	  		<td><span class="uportal-channel-strong"><spring:message code="label.preferred.name"/></span></td>
 	  		<td>
 	  			<form:input path="firstName" class="uportal-input-text" maxlength="30" />
