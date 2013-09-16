@@ -2,9 +2,6 @@ package edu.wisc.portlet.preferred.form;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.NotNull;
-
 public class PreferredName implements Serializable {
     private static final long serialVersionUID = 1L;
 
