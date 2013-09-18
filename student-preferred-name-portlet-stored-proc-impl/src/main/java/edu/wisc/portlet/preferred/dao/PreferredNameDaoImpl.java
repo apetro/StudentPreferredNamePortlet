@@ -54,7 +54,14 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
 	@Override
 	@Transactional
 	public void setPreferredName(PreferredName pn) {
-		updatePreferredName.updatePrefferedEmail(pn);
+		updatePreferredName.updatePrefferedName(pn);
+	}
+
+	@Override
+	@Transactional
+	public void deletePreferredName(String pvi) {
+		updatePreferredName.updatePrefferedName(new PreferredName(null,null,pvi));
+		
 	}
 
 }

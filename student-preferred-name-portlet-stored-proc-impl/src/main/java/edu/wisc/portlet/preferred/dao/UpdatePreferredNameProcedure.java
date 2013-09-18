@@ -23,7 +23,7 @@ public class UpdatePreferredNameProcedure extends StoredProcedure {
         this.compile();
     }
 
-    public void updatePrefferedEmail(PreferredName pn) {
+    public void updatePrefferedName(PreferredName pn) {
         final Map<String, String> args = new LinkedHashMap<String, String>();
         args.put("pvi", pn.getPvi());
         args.put("firstName", pn.getFirstName());
