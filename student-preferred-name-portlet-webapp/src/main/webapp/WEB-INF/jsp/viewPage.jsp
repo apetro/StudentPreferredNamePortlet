@@ -23,12 +23,11 @@
 <%@ include file="/WEB-INF/jsp/include.jsp"%>
 <%@ include file="/WEB-INF/jsp/header.jsp"%>
 
-<portlet:renderURL portletMode="VIEW" var="editPreferredNameURL">
-  <portlet:param name="action" value="edit" />
-</portlet:renderURL>
-
 <portlet:actionURL portletMode="VIEW" var="savePreferredNameURL">
   <portlet:param name="action" value="savePreferredName" />
+</portlet:actionURL>
+<portlet:actionURL portletMode="VIEW" var="deletePreferredNameURL">
+  <portlet:param name="action" value="delete" />
 </portlet:actionURL>
 
 <portlet:renderURL var="cancelAction" portletMode="VIEW" windowState="NORMAL" />
@@ -54,6 +53,7 @@
 	  		    </c:if>
 	  		    &nbsp;<span class="uportal-channel-table-caption">${pendingStatus }</span>
 	  		    &nbsp;<a href="#" onclick="studentPreferredNamePortlet.displayEdit(true);"><spring:message code="edit"/></a>
+	  		    &nbsp;<a href="${deletePreferredNameURL}" onclick="confirm('Are you sure you want to delete your preferred name?')"><spring:message code="delete"/></a>
 	  		</td>
 	  	</tr>
 	  	<tr class='${n}edit-error' style="display: none;">

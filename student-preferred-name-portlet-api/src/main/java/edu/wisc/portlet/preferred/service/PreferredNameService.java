@@ -8,4 +8,6 @@ public interface PreferredNameService {
 	public String getStatus(PreferredName pn);
 	
 	public void setPreferredName(PreferredName pn);
+	
+	public void deletePreferredName(String pvi);
 }

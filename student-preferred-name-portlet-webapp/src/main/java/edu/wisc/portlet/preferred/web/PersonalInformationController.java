@@ -91,6 +91,13 @@ public class PersonalInformationController {
 		return "viewPage";
 	}
 	
+	@ActionMapping(params="action=delete") 
+	public void submitDelete(ActionResponse response) throws PortletModeException {
+		final String pvi = PrimaryAttributeUtils.getPrimaryId();
+		preferredNameService.deletePreferredName(pvi);
+		response.setPortletMode(PortletMode.VIEW);
+	}
+	
 	@ActionMapping(params="action=savePreferredName")
 	public void submitEdit(ActionResponse response, PreferredName preferredName, BindingResult bindingResult) throws PortletModeException {
 		//validation

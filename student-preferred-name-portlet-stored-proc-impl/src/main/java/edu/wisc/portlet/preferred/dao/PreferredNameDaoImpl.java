@@ -13,6 +13,9 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.googlecode.ehcache.annotations.Cacheable;
+import com.googlecode.ehcache.annotations.TriggersRemove;
+
 import edu.wisc.portlet.preferred.form.PreferredName;
 
 @Repository
@@ -34,6 +37,7 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
 
 	@SuppressWarnings("unchecked")
 	@Override
+	@Cacheable(cacheName = "prefname")
 	public PreferredName getPreferredName(String pvi) {
 		final Map<String, String> args = new LinkedHashMap<String, String>();
         args.put("pvi", pvi);
@@ -53,14 +57,16 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
 
 	@Override
 	@Transactional
+	@TriggersRemove(cacheName="prefname")
 	public void setPreferredName(PreferredName pn) {
 		updatePreferredName.updatePrefferedName(pn);
 	}
 
 	@Override
 	@Transactional
+	@TriggersRemove(cacheName="prefname")
 	public void deletePreferredName(String pvi) {
-		updatePreferredName.updatePrefferedName(new PreferredName(null,null,pvi));
+		updatePreferredName.updatePrefferedName(new PreferredName("","",pvi));
 		
 	}
 

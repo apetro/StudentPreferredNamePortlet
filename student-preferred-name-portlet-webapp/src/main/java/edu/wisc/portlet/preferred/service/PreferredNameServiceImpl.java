@@ -37,6 +37,8 @@ public class PreferredNameServiceImpl implements PreferredNameService {
 			
 			if(ldapPn.equals(jdbcPn)) {
 				return "";
+			} else if (jdbcPn == null && !StringUtils.isEmpty(ldapPn.getFirstName())) { 
+				return "(deletion pending)";
 			} else {
 				return "(change pending)";
 			}
@@ -46,6 +48,12 @@ public class PreferredNameServiceImpl implements PreferredNameService {
 	@Override
 	public void setPreferredName(PreferredName pn) {
 		dao.setPreferredName(pn);
+		
+	}
+
+	@Override
+	public void deletePreferredName(String pvi) {
+		dao.deletePreferredName(pvi);
 		
 	}
 }

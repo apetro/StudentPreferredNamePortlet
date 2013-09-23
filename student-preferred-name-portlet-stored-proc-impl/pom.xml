@@ -44,6 +44,11 @@
         <artifactId>portlet-jdbc-util</artifactId>
     </dependency>
     
+    <dependency>
+        <groupId>com.googlecode.ehcache-spring-annotations</groupId>
+        <artifactId>ehcache-spring-annotations</artifactId>
+    </dependency>
+    
   </dependencies>
   
 </project>
