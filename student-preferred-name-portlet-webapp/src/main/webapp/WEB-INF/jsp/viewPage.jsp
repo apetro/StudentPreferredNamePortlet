@@ -53,7 +53,7 @@
 	  		    </c:if>
 	  		    &nbsp;<span class="uportal-channel-table-caption">${pendingStatus }</span>
 	  		    &nbsp;<a href="#" onclick="studentPreferredNamePortlet.displayEdit(true);"><spring:message code="edit"/></a>
-	  		    &nbsp;<a href="${deletePreferredNameURL}" onclick="confirm('Are you sure you want to delete your preferred name?')"><spring:message code="delete"/></a>
+	  		    &nbsp;<a href="${deletePreferredNameURL}" onclick="return confirm('Are you sure you want to delete your preferred name?');"><spring:message code="delete"/></a>
 	  		</td>
 	  	</tr>
 	  	<tr class='${n}edit-error' style="display: none;">
@@ -81,6 +81,7 @@
 </div>
 
 <script type="text/javascript">
+
 (function($) {
    $(document).ready(function() {
       $(".${n}edit").hide();
