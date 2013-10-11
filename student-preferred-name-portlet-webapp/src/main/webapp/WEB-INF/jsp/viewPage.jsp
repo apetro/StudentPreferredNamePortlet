@@ -62,11 +62,18 @@
 	  	<tr class='${n}edit' style="display: none;">
 	  		<td><span class="uportal-channel-strong"><spring:message code="label.preferred.name"/></span></td>
 	  		<td>
-	  			<form:input path="firstName" class="uportal-input-text" maxlength="30" />
-	  			&nbsp;<form:input path="middleName" class="uportal-input-text" maxlength="30" />
+	  			<form:input path="firstName" class="uportal-input-text" maxlength="30" id="${n}input-first-name" />
+	  			&nbsp;<form:input path="middleName" class="uportal-input-text" maxlength="30" id="${n}input-middle-name" />
 	  			&nbsp;${sirName}
 	  			&nbsp;<a href="#" onclick='studentPreferredNamePortlet.displayEdit(false);' class="uportal-button fancy-cancel"><spring:message code="button.cancel" text="Cancel"/></a>
 	  			&nbsp;<input class="uportal-button fancy-button" value="${savePreferredName}" type="submit">
+	  		</td>
+	  	</tr>
+	  	<tr class='${n}edit label' style="display: none;">
+	  		<td>&nbsp;</td>
+	  		<td>
+	  		<span style='padding-right: 11em'>First Name</span>
+	  		<span>Middle Name</span>
 	  		</td>
 	  	</tr>
 	  	
@@ -84,6 +91,8 @@
 
 (function($) {
    $(document).ready(function() {
+	  $("#${n}input-first-name").watermark("First Name    ");
+	  $("#${n}input-middle-name").watermark("Middle Name    ");
       $(".${n}edit").hide();
       $(".${n}edit-error").hide();
       

@@ -3,6 +3,12 @@
 	font-size : x-small;
 }
 
+.student-preferred-name .label {
+	font-style: italic;
+	font-size : x-small;
+	text-align: left;
+}
+
 .student-preferred-name .fancy-button {
 	background: #990000;
 	color: white !important;
