@@ -38,16 +38,13 @@
  }
  
  .student-preferred-name .edit-buttons {
- 	float : left;
- 	min-width: 12em;
- }
- 
- .student-preferred-name .edit-buttons {
- 	clear : left;
- 	min-width: 12em;
- 	margin-left : 15.2em;
- 	padding-top : .75em;
- 	padding-bottom : .75em;
+ 	clear: left;
+	min-width: 12em;
+	padding-top: .75em;
+	padding-bottom: .75em;
+	max-width: 24.5em;
+	width: 100%;
+	text-align: right;
  }
  
  .student-preferred-name .label {
