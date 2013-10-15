@@ -3,12 +3,6 @@
 	font-size : x-small;
 }
 
-.student-preferred-name .label {
-	font-style: italic;
-	font-size : x-small;
-	text-align: left;
-}
-
 .student-preferred-name .fancy-button {
 	background: #990000;
 	color: white !important;
@@ -23,3 +17,44 @@
 	background: lightgray;
 	color: black !important;
 }
+
+ .student-preferred-name .pref-name-edit-error
+ {
+ 	padding : 1em;
+ }
+ 
+ .student-preferred-name .dl-contact-info p {
+ 	font-style: italic;
+ 	font-size: x-small;
+ 	margin: .5em;
+ }
+ 
+ .student-preferred-name .edit-name {
+	float : left; 
+ }
+ 
+ .student-preferred-name .edit-notice {
+ 	clear : left;
+ }
+ 
+ .student-preferred-name .edit-buttons {
+ 	float : left;
+ 	min-width: 12em;
+ }
+ 
+ .student-preferred-name .edit-buttons {
+ 	clear : left;
+ 	min-width: 12em;
+ 	margin-left : 15.2em;
+ 	padding-top : .75em;
+ 	padding-bottom : .75em;
+ }
+ 
+ .student-preferred-name .label {
+ 	font-style: italic;
+	font-size : x-small;
+ }
+ 
+ .student-preferred-name .edit-area {
+ 	
+ }
