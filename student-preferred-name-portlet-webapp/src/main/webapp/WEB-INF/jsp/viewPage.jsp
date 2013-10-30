@@ -70,14 +70,14 @@
 				  		<div>
 				  			<div class="edit-name">
 					  		<span>
-					  			<form:input path="firstName" class="uportal-input-text" maxlength="30" />
+					  			<form:input path="firstName" class="uportal-input-text ${n}first-name" maxlength="30" />
 					  		</span>
 					  		<br/>
 					  		<span class='label'>First Name</span>
 					  		</div>
 					  		<div class="edit-name">
 					  		<span>
-					  			<form:input path="middleName" class="uportal-input-text" maxlength="30" />
+					  			<form:input path="middleName" class="uportal-input-text ${n}middle-name" maxlength="30" />
 					  		</span>
 					  		<br/>
 					  		<span class='label'>Middle Name</span>
@@ -107,21 +107,28 @@
 </div>
 
 <script type="text/javascript">
-
+var fname = "";
+var mname = "";
 (function($) {
    $(document).ready(function() {
       $(".${n}edit").hide();
       $(".${n}edit-error").hide();
+      fname = $(".${n}first-name").val();
+      mname = $(".${n}middle-name").val();
       
       studentPreferredNamePortlet.displayEdit = function (enable) {
     	  if(enable) {
     		  $(".${n}edit").show();
     		  $(".${n}view").hide();
+    		  
     	  } else {
     		  $(".${n}edit").hide();
     		  $(".${n}edit-error").hide();
     		  $(".${n}view").show();
-    		  
+    		  $(".${n}first-name").val(fname);
+    		  $(".${n}middle-name").val(mname);
+    		  fname = "";
+    		  mname = "";
     	  }
       }
    });			
