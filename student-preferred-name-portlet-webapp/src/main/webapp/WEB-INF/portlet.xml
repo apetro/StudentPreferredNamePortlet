@@ -53,6 +53,24 @@
         </portlet-preferences>
     </portlet>
     
+    <portlet>
+        <portlet-name>PreferredNameAdministration</portlet-name>
+        <portlet-class>org.jasig.springframework.web.portlet.context.ContribDispatcherPortlet</portlet-class>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>/WEB-INF/context/portlet/preferred-name-administration.xml</value>
+        </init-param>
+        <expiration-cache>0</expiration-cache>
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+        </supports>
+        <portlet-info>
+            <title>Preferred Name Administration</title>
+            <short-title>Preferred Name Administration</short-title>
+        </portlet-info>
+    </portlet>
+    
     <user-attribute>
         <name>displayName</name>
     </user-attribute>
