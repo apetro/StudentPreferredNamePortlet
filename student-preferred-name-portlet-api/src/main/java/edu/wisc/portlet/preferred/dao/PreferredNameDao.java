@@ -11,5 +11,5 @@ public interface PreferredNameDao {
 	
 	public void deletePreferredName(String pvi);
 
-	public void deletePreferredNameAdmin(String pvi);
+	public boolean deletePreferredNameAdmin(String pvi);
 }

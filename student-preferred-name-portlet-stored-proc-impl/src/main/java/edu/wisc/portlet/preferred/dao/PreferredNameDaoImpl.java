@@ -41,7 +41,6 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
 		this.deletePreferredNameAdmin = deletePrefNameProc;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	@Cacheable(cacheName = "prefname")
 	public PreferredName getPreferredName(String pvi) {
@@ -79,8 +78,8 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
 	@Override
 	@Transactional
 	@TriggersRemove(cacheName="prefname")
-	public void deletePreferredNameAdmin(String pvi) {
-		deletePreferredNameAdmin.deletePrefferedName(new PreferredName(pvi));
+	public boolean deletePreferredNameAdmin(String pvi) {
+		return deletePreferredNameAdmin.deletePreferredNameAdmin(pvi);
 	}
 
 }
