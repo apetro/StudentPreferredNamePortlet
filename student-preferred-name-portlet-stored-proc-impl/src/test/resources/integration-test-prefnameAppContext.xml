@@ -29,7 +29,7 @@
     <context:annotation-config />
     <context:component-scan base-package="edu.wisc.portlet.preferred.dao" />
     
-    <context:property-placeholder location="classpath:/jdbc-config.properties" />
+    <context:property-placeholder location="classpath:/test-jdbc-config.properties" />
 
     <tx:annotation-driven transaction-manager="updateTransactionManager"/>
     

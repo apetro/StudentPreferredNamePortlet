@@ -29,7 +29,7 @@
     <context:annotation-config />
     <context:component-scan base-package="edu.wisc.portlet.preferred.dao" />
     
-    <context:property-placeholder location="classpath:/jdbc-config.properties" />
+    <!-- <context:property-placeholder location="classpath:/test-jdbc-config.properties" /> -->
 
     <tx:annotation-driven transaction-manager="updateTransactionManager"/>
     
@@ -39,9 +39,9 @@
     
     <bean id="deletePreferredNameFunction" class="edu.wisc.portlet.preferred.dao.DeletePreferredNameFunction" >
         <constructor-arg ref="adminDataSource" />
-    </bean>
+     </bean>
     
-    <bean id="namedParameterJdbcOperations" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+	<bean id="namedParameterJdbcOperations" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
         <qualifier value="prefname" />
         <constructor-arg ref="updateDataSource" />
     </bean>
@@ -51,7 +51,7 @@
         <property name="dataSource" ref="updateDataSource" />
     </bean>
 
-    <bean id="updateDataSource" class="org.jasig.portlet.utils.jdbc.TomcatDataSourceFactory">
+	<bean id="updateDataSource" class="org.jasig.portlet.utils.jdbc.TomcatDataSourceFactory">
         <qualifier value="prefname" />
         
         <property name="baseObjectName" value="PrefName:section=DataSource,name=" />
@@ -59,9 +59,9 @@
         <property name="minIdle" value="1" />
         <property name="maxActive" value="75" />
         <property name="maxIdle" value="50" />
-        <property name="maxWait" value="5000" /> <!-- 5 seconds -->
-        <property name="maxAge" value="3600000" /> <!-- 1 hour -->
-        <property name="minEvictableIdleTimeMillis" value="300000" /> <!-- 5 minutes -->
+        <property name="maxWait" value="5000" /> 
+        <property name="maxAge" value="3600000" /> 
+        <property name="minEvictableIdleTimeMillis" value="300000" /> 
         
         <property name="abandonWhenPercentageFull" value="70" />
         <property name="removeAbandoned" value="true" />
@@ -88,9 +88,9 @@
         <property name="minIdle" value="1" />
         <property name="maxActive" value="75" />
         <property name="maxIdle" value="50" />
-        <property name="maxWait" value="5000" /> <!-- 5 seconds -->
-        <property name="maxAge" value="3600000" /> <!-- 1 hour -->
-        <property name="minEvictableIdleTimeMillis" value="300000" /> <!-- 5 minutes -->
+        <property name="maxWait" value="5000" /> 
+        <property name="maxAge" value="3600000" />
+        <property name="minEvictableIdleTimeMillis" value="300000" />
         
         <property name="abandonWhenPercentageFull" value="70" />
         <property name="removeAbandoned" value="true" />

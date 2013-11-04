@@ -24,6 +24,7 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
 	
     private NamedParameterJdbcOperations jdbcTemplate;
     private UpdatePreferredNameProcedure updatePreferredName;
+    private DeletePreferredNameFunction deletePreferredNameAdmin;
 	
 	@Autowired
     public void setJdbcTemplate(@Qualifier("prefname") NamedParameterJdbcOperations jdbcTemplate) {
@@ -31,9 +32,14 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
     }
 	
 	@Autowired
-    public void setUpdatePreferredEmail(UpdatePreferredNameProcedure updatePrefNameProc) {
+    public void setUpdatePreferredName(UpdatePreferredNameProcedure updatePrefNameProc) {
         this.updatePreferredName = updatePrefNameProc;
     }
+	
+	@Autowired
+	public void setDeletePreferredName(DeletePreferredNameFunction deletePrefNameProc) {
+		this.deletePreferredNameAdmin = deletePrefNameProc;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -66,8 +72,15 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
 	@Transactional
 	@TriggersRemove(cacheName="prefname")
 	public void deletePreferredName(String pvi) {
-		updatePreferredName.updatePrefferedName(new PreferredName("","",pvi));
+		updatePreferredName.updatePrefferedName(new PreferredName(pvi));
 		
+	}
+	
+	@Override
+	@Transactional
+	@TriggersRemove(cacheName="prefname")
+	public void deletePreferredNameAdmin(String pvi) {
+		deletePreferredNameAdmin.deletePrefferedName(new PreferredName(pvi));
 	}
 
 }

@@ -51,6 +51,12 @@ public class PreferredName implements Serializable {
 		this.middleName = middle;
 		this.pvi = pvi;
 	}
+	
+	public PreferredName(String pvi) {
+		this.firstName = null;
+		this.middleName = null;
+		this.pvi = pvi;
+	}
 
 	@Override
 	public int hashCode() {
