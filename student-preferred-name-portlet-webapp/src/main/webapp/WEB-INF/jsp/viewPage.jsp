@@ -57,7 +57,7 @@
 	  	<form action="${savePreferredNameURL}" method="post">
 			<spring:nestedPath path="preferredName">
 			  	<div class='${n}edit-error pref-name-edit-error' style="display: none; padding: .5em;">
-			  		<span><form:errors path="firstName" cssClass="portlet-msg-error"/>&nbsp;<form:errors path="middleName" cssClass="portlet-msg-error"/></span>
+			  		<span><form:errors path="firstName" cssClass="error"/>&nbsp;<form:errors path="middleName" cssClass="error"/></span>
 			  	</div>
 			  	<div class="contact-info-pref-name-edit ${n}edit" style="display: none;">
 			  		<span class="uportal-channel-strong">

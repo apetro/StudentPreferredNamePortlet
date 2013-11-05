@@ -52,6 +52,10 @@
 	font-size : x-small;
  }
  
- .student-preferred-name .edit-area {
- 	
+ .student-preferred-name .error {
+ 	color: #f00;
+ }
+ 
+ .student-preferred-name-admin .error {
+ 	color: #f00;
  }

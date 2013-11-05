@@ -1,20 +1,20 @@
 package edu.wisc.portlet.preferred.admin.web;
 
-import java.util.Map;
 
+import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletMode;
 import javax.portlet.PortletModeException;
-import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 
-import org.jasig.springframework.security.portlet.authentication.PrimaryAttributeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.portlet.bind.annotation.ActionMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 
@@ -38,14 +38,30 @@ public class AdminController {
 		return "selectPvi";
 	}
 	
+	@RenderMapping(params = "action=viewPrefName")
+	public String viewPrefName(@RequestParam PreferredName preferredName, ModelMap modelMap, RenderRequest request) {
+		if(preferredName == null) {
+			return "selectPvi";
+		}
+		return "viewPrefName";
+	}
+	
 	@RenderMapping(params="action=searchPvi")
-	public String searchPvi(ModelMap modelMap, RenderRequest request) {
+	public String searchPvi(@RequestParam String pvi, RenderResponse response, ModelMap modelMap, RenderRequest request) throws PortletModeException {
 		
-		//TODO: Search PVI
+		PreferredName preferredName = preferredNameService.getPreferredName(pvi);
 		// If found 
+		if(preferredName != null) {
+			modelMap.addAttribute("preferredName", preferredName);
+			return "viewPrefName";
+		} else {
+			modelMap.addAttribute("error", "No preferred name found under that PVI");
+			return "selectPvi";
+		}
 		/// return viewInfoPage
 		// else return error on selectPvi Page
-		return "selectPvi";
+		
+		
 	}
 	
 	@ActionMapping(params="action=delete") 

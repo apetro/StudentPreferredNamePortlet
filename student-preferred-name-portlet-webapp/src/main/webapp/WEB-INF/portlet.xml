@@ -69,6 +69,12 @@
             <title>Preferred Name Administration</title>
             <short-title>Preferred Name Administration</short-title>
         </portlet-info>
+        <portlet-preferences> 
+            <preference>
+            	<name>pviUserAttributes</name>
+            	<value>wiscedupvi</value>
+            </preference>
+        </portlet-preferences>
     </portlet>
     
     <user-attribute>
