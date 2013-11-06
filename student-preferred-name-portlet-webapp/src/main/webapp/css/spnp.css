@@ -47,6 +47,15 @@
 	text-align: right;
  }
  
+ .student-preferred-name .pvi-lookup .edit-buttons {
+	text-align: inherit; 
+ }
+ 
+ .student-preferred-name .modify-preferred-name .edit-buttons {
+	text-align: inherit; 
+	max-width : inherit;
+ }
+ 
  .student-preferred-name .label {
  	font-style: italic;
 	font-size : x-small;
@@ -56,6 +65,8 @@
  	color: #f00;
  }
  
- .student-preferred-name-admin .error {
- 	color: #f00;
+ .student-preferred-name .info {
+ 	color: green;
+ 	font-style: italic;
+ 	font-size: smaller;
  }

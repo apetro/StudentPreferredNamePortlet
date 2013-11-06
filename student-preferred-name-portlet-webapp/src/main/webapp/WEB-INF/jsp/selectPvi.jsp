@@ -31,11 +31,17 @@
 
 <spring:message code="search" var="search" text="Search"/>
 
-<div id="${n}student-preferred-name-admin" class="student-preferred-name-admin">
+<div id="${n}student-preferred-name" class="student-preferred-name">
 	<div class='pvi-lookup'>
 	<c:if test="${!empty error }">
 		<div class="error">
 			<span>${error}</span>
+		</div>
+	</c:if>
+	
+	<c:if test="${!empty info }">
+		<div class="info">
+			<span>${info}</span>
 		</div>
 	</c:if>
   	<form action="${searchPviURL}" method="post">
@@ -51,7 +57,7 @@
 			  		</span>
 			  		</div>
 		  		</div>
-		  		<div class="submit-buttons">
+		  		<div class="edit-buttons">
 		  			<span>
 			  			<input class="uportal-button fancy-button" value="${search}" type="submit">
 			  		</span>
@@ -62,11 +68,3 @@
 	</form>
 	</div>
 </div>
-
-<script type="text/javascript">
-(function($) {
-   $(document).ready(function() {
-	   
-   });			
-})(studentPreferredNamePortlet.jQuery);	
-</script>
