@@ -7,6 +7,7 @@ import javax.portlet.PortletModeException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -49,21 +50,44 @@ public class AdminController {
 	}
 	
 	@RenderMapping(params="action=searchPvi")
-	public String searchPvi(@RequestParam String pvi, RenderResponse response, ModelMap modelMap, RenderRequest request) throws PortletModeException {
+	public String searchPvi(@RequestParam String pvi, @RequestParam(required=false) String netId, RenderResponse response, ModelMap modelMap, RenderRequest request) throws PortletModeException {
 		
 		PreferredName preferredName = (PreferredName) modelMap.get("preferredName");
+		boolean usedNetIdLookup=false;
 		
-		if(preferredName == null)
+		if(preferredName == null) {
+			if(StringUtils.isBlank(pvi)) {
+				pvi = preferredNameService.getPviFromNetId(netId);
+				if(StringUtils.isBlank(pvi)) {
+					modelMap.addAttribute("error", "No pvi found under Net ID: " + netId);
+					return "selectPvi";
+				} else {
+					usedNetIdLookup = true;
+				}
+			}
+			
 			preferredName = preferredNameService.getPreferredName(pvi);
+		}
 		if(request.getParameter("hasError") != null) {
 			modelMap.addAttribute("hasError","true");
 		}
 		
 		if(preferredName != null) {
 			modelMap.addAttribute("preferredName", preferredName);
+			if(usedNetIdLookup) {
+				modelMap.addAttribute("sourceLabel", "Net ID");
+				modelMap.addAttribute("source",netId);
+			} else {
+				modelMap.addAttribute("sourceLabel", "PVI");
+				modelMap.addAttribute("source",pvi);
+			}
 			return "viewPrefNameAdmin";
 		} else {
-			modelMap.addAttribute("error", "No preferred name found under pvi: " + pvi);
+			if(usedNetIdLookup) {
+				modelMap.addAttribute("error","A pvi was found with Net ID: " + netId + ", however there was no associated preferred name under there PVI.");
+			} else {
+				modelMap.addAttribute("error", "No preferred name found under pvi: " + pvi);				
+			}
 			return "selectPvi";
 		}
 		

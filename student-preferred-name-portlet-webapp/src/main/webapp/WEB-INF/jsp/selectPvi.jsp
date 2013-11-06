@@ -44,6 +44,11 @@
 			<span>${info}</span>
 		</div>
 	</c:if>
+	<c:if test="${empty info }">
+		<div class="info">
+			<span>Search by PVI or Net ID</span>
+		</div>
+	</c:if>
   	<form action="${searchPviURL}" method="post">
 		<div class="admin-pvi-search ${n}-admin-pvi-search">
 	  		<div>
@@ -54,6 +59,14 @@
 			  		</span>
 			  		<span>
 			  			<input type="text" name="pvi" class="uportal-input-text" maxlength="9" />
+			  		</span>
+			  		</div>
+			  		<div class="netid-search">
+			  		<span class="uportal-channel-strong">
+			  			<spring:message code="label.preferred.netid"/>:
+			  		</span>
+			  		<span>
+			  			<input type="text" name="netId" class="uportal-input-text" maxlength="100" />
 			  		</span>
 			  		</div>
 		  		</div>

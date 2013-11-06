@@ -55,6 +55,9 @@
 	  			<form:hidden path="pvi"/>
 				<div class="student-preferred-name ${n}-admin-edit-pref-name">
 			  		<div>
+				  		<div class="source">
+				  			<span class="uportal-channel-strong">${sourceLabel}: </span><span>${source}</span>
+				  		</div>
 				  		<div>
 				  			<div class="edit-name">
 						  		<span>

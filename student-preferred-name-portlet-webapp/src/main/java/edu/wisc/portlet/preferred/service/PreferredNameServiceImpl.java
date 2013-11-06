@@ -69,4 +69,9 @@ public class PreferredNameServiceImpl implements PreferredNameService {
 		dao.deletePreferredNameAdmin(pvi);
 		
 	}
+
+	@Override
+	public String getPviFromNetId(String netId) {
+		return dao.getPviFromNetId(netId);
+	}
 }

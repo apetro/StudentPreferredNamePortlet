@@ -41,6 +41,10 @@
         <constructor-arg ref="adminDataSource" />
     </bean>
     
+    <bean id="getPviByNetIdFunction" class="edu.wisc.portlet.preferred.dao.GetPviByNetIdFunction" >
+        <constructor-arg ref="adminDataSource" />
+    </bean>
+    
     <bean id="hideSourceFunction" class="edu.wisc.portlet.preferred.dao.HideSourceFunction" >
         <constructor-arg ref="adminDataSource" />
     </bean>

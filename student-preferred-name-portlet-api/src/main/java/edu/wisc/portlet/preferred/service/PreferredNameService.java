@@ -14,4 +14,6 @@ public interface PreferredNameService {
 	public void deletePreferredName(String pvi);
 
 	public void deletePreferredNameAdmin(String pvi);
+	
+	public String getPviFromNetId(String netId);
 }

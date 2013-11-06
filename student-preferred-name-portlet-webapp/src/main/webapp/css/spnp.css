@@ -70,3 +70,19 @@
  	font-style: italic;
  	font-size: smaller;
  }
+ 
+ .student-preferred-name .pvi-search {
+ 	padding-bottom: .5em;
+ }
+ 
+ .student-preferred-name .pvi-search span {
+  	margin-right: 2em;
+ }
+ 
+ .student-preferred-name .netid-search span {
+  	margin-right: .4em;
+ }
+ 
+ .student-preferred-name .source {
+ 	padding-bottom : .5em;
+ }

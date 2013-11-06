@@ -27,6 +27,7 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
     private DeletePreferredNameFunction deletePreferredNameAdmin;
     private HideSourceFunction hideSourceFunction;
     private UnhideSourceFunction unhideSourceFunction;
+    private GetPviByNetIdFunction getPviByNetIdFunction;
 	
 	@Autowired
     public void setJdbcTemplate(@Qualifier("prefname") NamedParameterJdbcOperations jdbcTemplate) {
@@ -52,6 +53,11 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
 	public void setUnhideSourceFunction(UnhideSourceFunction unhideSF) {
 		this.unhideSourceFunction = unhideSF;
 	}
+	
+	@Autowired
+	public void setGetPviFromNetId(GetPviByNetIdFunction dao) {
+		this.getPviByNetIdFunction = dao;
+	}
 
 	@Override
 	@Cacheable(cacheName = "prefname")
@@ -64,12 +70,6 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
                 PreferredNameRowMapper.INTANCE);
         
         return DataAccessUtils.singleResult(query);
-	}
-
-	@Override
-	public boolean isPending() {
-		// TODO check if what is in the db is the same as what is currently in LDAP
-		return false;
 	}
 
 	@Override
@@ -102,6 +102,11 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
 		} else {
 			unhideSourceFunction.unhideSource(pn.getPvi());
 		}
+	}
+
+	@Override
+	public String getPviFromNetId(String netId) {
+		return getPviByNetIdFunction.getPviFromNetId(netId);
 	}
 
 }
