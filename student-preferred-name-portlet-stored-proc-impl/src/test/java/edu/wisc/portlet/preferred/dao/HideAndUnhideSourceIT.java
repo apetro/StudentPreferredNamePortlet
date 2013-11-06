@@ -8,7 +8,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:/integration-test-prefnameAppContext.xml")
-public class DeletePreferredNameFunctionIT extends DeletePreferredNameFunctionTestBase {
+public class HideAndUnhideSourceIT extends HideAndUnhideSourceTestBase {
 	@Before
 	public void before() {
 		super.before();
@@ -16,7 +16,7 @@ public class DeletePreferredNameFunctionIT extends DeletePreferredNameFunctionTe
 	}
 	
 	@Test
-	public void testDelete() throws Exception {
-		super.testDelete();
+	public void testHideAndUnhide() throws Exception {
+		super.testHideAndUnhide();
 	}
 }

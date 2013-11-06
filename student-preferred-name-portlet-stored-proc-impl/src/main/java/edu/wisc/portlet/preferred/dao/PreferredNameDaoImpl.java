@@ -25,6 +25,8 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
     private NamedParameterJdbcOperations jdbcTemplate;
     private UpdatePreferredNameProcedure updatePreferredName;
     private DeletePreferredNameFunction deletePreferredNameAdmin;
+    private HideSourceFunction hideSourceFunction;
+    private UnhideSourceFunction unhideSourceFunction;
 	
 	@Autowired
     public void setJdbcTemplate(@Qualifier("prefname") NamedParameterJdbcOperations jdbcTemplate) {
@@ -40,6 +42,16 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
 	public void setDeletePreferredName(DeletePreferredNameFunction deletePrefNameProc) {
 		this.deletePreferredNameAdmin = deletePrefNameProc;
 	}
+	
+	@Autowired
+	public void setHideSourceFunction(HideSourceFunction hideSF) {
+		this.hideSourceFunction = hideSF;
+	}
+	
+	@Autowired
+	public void setUnhideSourceFunction(UnhideSourceFunction unhideSF) {
+		this.unhideSourceFunction = unhideSF;
+	}
 
 	@Override
 	@Cacheable(cacheName = "prefname")
@@ -47,7 +59,7 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
 		final Map<String, String> args = new LinkedHashMap<String, String>();
         args.put("pvi", pvi);
         
-        List<PreferredName> query = jdbcTemplate.query("select first_name, middle_name, pvi from msnprefname.msn_preferred_name where pvi = :pvi", 
+        List<PreferredName> query = jdbcTemplate.query("select first_name, middle_name, pvi, HIDE_LEGAL_NAME from msnprefname.msn_preferred_name where pvi = :pvi", 
                 args, 
                 PreferredNameRowMapper.INTANCE);
         
@@ -80,6 +92,16 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
 	@TriggersRemove(cacheName="prefname")
 	public boolean deletePreferredNameAdmin(String pvi) {
 		return deletePreferredNameAdmin.deletePreferredNameAdmin(pvi);
+	}
+	
+	@Override
+	@Transactional
+	public void updateHideSource(PreferredName pn) {
+		if(pn.isHideSource()) {
+			hideSourceFunction.hideSource(pn.getPvi());
+		} else {
+			unhideSourceFunction.unhideSource(pn.getPvi());
+		}
 	}
 
 }

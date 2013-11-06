@@ -40,6 +40,14 @@
     <bean id="deletePreferredNameFunction" class="edu.wisc.portlet.preferred.dao.DeletePreferredNameFunction" >
         <constructor-arg ref="adminDataSource" />
      </bean>
+     
+     <bean id="hideSourceFunction" class="edu.wisc.portlet.preferred.dao.HideSourceFunction" >
+        <constructor-arg ref="adminDataSource" />
+    </bean>
+    
+    <bean id="unhideSourceFunction" class="edu.wisc.portlet.preferred.dao.UnhideSourceFunction" >
+        <constructor-arg ref="adminDataSource" />
+    </bean>
     
 	<bean id="namedParameterJdbcOperations" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
         <qualifier value="prefname" />

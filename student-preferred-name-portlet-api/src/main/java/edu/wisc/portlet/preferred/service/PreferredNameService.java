@@ -9,6 +9,8 @@ public interface PreferredNameService {
 	
 	public void setPreferredName(PreferredName pn);
 	
+	public void setPreferredNameAdmin(PreferredName pn);
+	
 	public void deletePreferredName(String pvi);
 
 	public void deletePreferredNameAdmin(String pvi);

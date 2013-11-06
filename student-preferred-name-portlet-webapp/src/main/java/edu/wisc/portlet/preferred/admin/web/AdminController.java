@@ -86,7 +86,7 @@ public class AdminController {
 		//validation
 		ValidationUtils.invokeValidator(new PreferredNameValidator(), preferredName, bindingResult);
 		if(!bindingResult.hasErrors()) {
-			preferredNameService.setPreferredName(preferredName);
+			preferredNameService.setPreferredNameAdmin(preferredName);
 			response.setRenderParameter("info", "Preferred Name Updated Successfully");
 			//redirect to view page on success
 			response.setPortletMode(PortletMode.VIEW);

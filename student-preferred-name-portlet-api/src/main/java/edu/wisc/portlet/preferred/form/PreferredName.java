@@ -11,6 +11,8 @@ public class PreferredName implements Serializable {
     
     private String pvi;
     
+    private boolean hideSource;
+    
 	public String getFirstName() {
 		return firstName;
 	}
@@ -35,7 +37,13 @@ public class PreferredName implements Serializable {
 		return this.pvi;
 	}
 
+	public boolean isHideSource() {
+		return hideSource;
+	}
 
+	public void setHideSource(boolean hideSource) {
+		this.hideSource = hideSource;
+	}
 
 	public PreferredName() {
 		

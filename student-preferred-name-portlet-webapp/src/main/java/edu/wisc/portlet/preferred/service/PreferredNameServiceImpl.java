@@ -50,6 +50,13 @@ public class PreferredNameServiceImpl implements PreferredNameService {
 		dao.setPreferredName(pn);
 		
 	}
+	
+	@Override
+	public void setPreferredNameAdmin(PreferredName pn) {
+		dao.setPreferredName(pn);
+		dao.updateHideSource(pn);
+		
+	}
 
 	@Override
 	public void deletePreferredName(String pvi) {

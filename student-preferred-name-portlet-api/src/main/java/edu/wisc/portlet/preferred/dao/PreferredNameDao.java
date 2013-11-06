@@ -12,4 +12,6 @@ public interface PreferredNameDao {
 	public void deletePreferredName(String pvi);
 
 	public boolean deletePreferredNameAdmin(String pvi);
+
+	public void updateHideSource(PreferredName pn);
 }

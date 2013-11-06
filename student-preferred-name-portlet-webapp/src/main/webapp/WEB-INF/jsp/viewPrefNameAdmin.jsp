@@ -62,13 +62,20 @@
 						  		</span>
 						  		<br/>
 						  		<span class='label'>First Name</span>
-						  		</div>
-						  		<div class="edit-name">
+						  	</div>
+						  	<div class="edit-name">
 						  		<span>
 						  			<form:input path="middleName" class="uportal-input-text ${n}middle-name" maxlength="30" />
 						  		</span>
 						  		<br/>
 						  		<span class='label'>Middle Name</span>
+					  		</div>
+					  		<div class="edit-name">
+						  		<span>
+						  			<form:checkbox path="hideSource" class="uportal-input-text ${n}hide-legal-name" />
+						  		</span>
+						  		<br/>
+						  		<span class='label'>Hide Legal Name</span>
 					  		</div>
 				  		</div>
 				  		<div class="edit-buttons">
