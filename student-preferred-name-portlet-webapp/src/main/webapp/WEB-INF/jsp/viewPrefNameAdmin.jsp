@@ -32,11 +32,6 @@
 	<portlet:param name="pvi" value="${preferredName.pvi }"/>
 </portlet:actionURL>
 
-<portlet:actionURL portletMode="VIEW" var="deletePrefNameURL">
-	<portlet:param name="action" value="delete"/>
-	<portlet:param name="pvi" value="${preferredName.pvi }"/>
-</portlet:actionURL>
-
 <portlet:renderURL var="cancelAction" portletMode="VIEW" windowState="NORMAL" />
 
 <spring:message code="save" var="save" text="Save"/>
@@ -58,17 +53,25 @@
 				  		<div class="source">
 				  			<span class="uportal-channel-strong">${sourceLabel}: </span><span>${source}</span>
 				  		</div>
+				  		<div class="source">
+				  			<span class="uportal-channel-strong">Primary/Legal Name: </span><span>${userFullName}</span>
+				  		</div>
 				  		<div>
+			  				<span class="uportal-channel-strong">Preferred Name : </span>
+			  			</div>
+				  		<div style="margin-left: 1em;">
 				  			<div class="edit-name">
 						  		<span>
-						  			<form:input path="firstName" class="uportal-input-text ${n}first-name" maxlength="30" />
+						  			${preferredName.firstName }
+						  			<form:hidden path="firstName" class="${n}first-name" />
 						  		</span>
 						  		<br/>
 						  		<span class='label'>First Name</span>
 						  	</div>
 						  	<div class="edit-name">
 						  		<span>
-						  			<form:input path="middleName" class="uportal-input-text ${n}middle-name" maxlength="30" />
+						  			${preferredName.middleName }
+						  			<form:hidden path="middleName" class="${n}middle-name" />
 						  		</span>
 						  		<br/>
 						  		<span class='label'>Middle Name</span>
@@ -86,10 +89,7 @@
 					  			<input class="uportal-button fancy-button" value="${save}" type="submit">
 					  		</span>
 					  		<span>
-					  			<a href="${deletePrefNameAdminURL}" class="uportal-button" onclick="return confirm('Are you sure you want to delete this preferred name and mark it as inappropriate?');">Delete Inappropriate</a>
-					  		</span>
-					  		<span>
-					  			<a href="${deletePrefNameURL}" class="uportal-button" onclick="return confirm('Are you sure you want to delete this preferred name?');">Delete</a>
+					  			<a href="${deletePrefNameAdminURL}" class="uportal-button" onclick="return confirm('Are you sure you want to delete this preferred name and mark it as inappropriate?');">Delete</a>
 					  		</span>
 					  		<span>
 					  			<a href="${ cancelAction }" class="uportal-button">Cancel</a>

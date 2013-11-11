@@ -99,18 +99,10 @@ public class AdminController {
 		response.setPortletMode(PortletMode.VIEW);
 	}
 	
-	@ActionMapping(params="action=delete")
-	public void submitDelete(ActionResponse response, @RequestParam String pvi) throws PortletModeException {
-		preferredNameService.deletePreferredName(pvi);
-		response.setPortletMode(PortletMode.VIEW);
-	}
-	
 	@ActionMapping(params="action=savePreferredName")
 	public void submitEdit(ActionResponse response, PreferredName preferredName, BindingResult bindingResult) throws PortletModeException {
-		//validation
-		ValidationUtils.invokeValidator(new PreferredNameValidator(), preferredName, bindingResult);
 		if(!bindingResult.hasErrors()) {
-			preferredNameService.setPreferredNameAdmin(preferredName);
+			preferredNameService.updateHideSource(preferredName);
 			response.setRenderParameter("info", "Preferred Name Updated Successfully");
 			//redirect to view page on success
 			response.setPortletMode(PortletMode.VIEW);

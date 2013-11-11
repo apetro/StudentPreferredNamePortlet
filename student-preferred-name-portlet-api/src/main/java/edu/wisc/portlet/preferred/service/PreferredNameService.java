@@ -9,7 +9,7 @@ public interface PreferredNameService {
 	
 	public void setPreferredName(PreferredName pn);
 	
-	public void setPreferredNameAdmin(PreferredName pn);
+	public void updateHideSource(PreferredName pn);
 	
 	public void deletePreferredName(String pvi);
 
