@@ -12,14 +12,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.portlet.bind.annotation.ActionMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 
 import edu.wisc.portlet.preferred.form.PreferredName;
-import edu.wisc.portlet.preferred.form.validator.PreferredNameValidator;
+import edu.wisc.portlet.preferred.form.PreferredNameExtended;
 import edu.wisc.portlet.preferred.service.PreferredNameService;
 
 @Controller
@@ -52,7 +51,7 @@ public class AdminController {
 	@RenderMapping(params="action=searchPvi")
 	public String searchPvi(@RequestParam String pvi, @RequestParam(required=false) String netId, RenderResponse response, ModelMap modelMap, RenderRequest request) throws PortletModeException {
 		
-		PreferredName preferredName = (PreferredName) modelMap.get("preferredName");
+		PreferredNameExtended preferredName = (PreferredNameExtended) modelMap.get("preferredName");
 		boolean usedNetIdLookup=false;
 		
 		if(preferredName == null) {
@@ -66,7 +65,7 @@ public class AdminController {
 				}
 			}
 			
-			preferredName = preferredNameService.getPreferredName(pvi);
+			preferredName = preferredNameService.getPreferredNameAndLegalName(pvi);
 		}
 		if(request.getParameter("hasError") != null) {
 			modelMap.addAttribute("hasError","true");

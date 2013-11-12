@@ -54,7 +54,7 @@
 				  			<span class="uportal-channel-strong">${sourceLabel}: </span><span>${source}</span>
 				  		</div>
 				  		<div class="source">
-				  			<span class="uportal-channel-strong">Primary/Legal Name: </span><span>${userFullName}</span>
+				  			<span class="uportal-channel-strong">Primary/Legal Name: </span><span>${preferredName.legalName}</span>
 				  		</div>
 				  		<div>
 			  				<span class="uportal-channel-strong">Preferred Name : </span>

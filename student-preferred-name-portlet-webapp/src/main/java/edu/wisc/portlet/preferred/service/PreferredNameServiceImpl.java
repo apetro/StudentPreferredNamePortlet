@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import edu.wisc.portlet.preferred.dao.PreferredNameDao;
 import edu.wisc.portlet.preferred.form.PreferredName;
+import edu.wisc.portlet.preferred.form.PreferredNameExtended;
 import edu.wisc.portlet.preferred.service.PreferredNameService;
 
 @Service
@@ -16,6 +17,11 @@ public class PreferredNameServiceImpl implements PreferredNameService {
 	@Autowired
 	public void setPreferredNameDao(PreferredNameDao dao) {
 		this.dao = dao;
+	}
+	
+	@Override
+	public PreferredNameExtended getPreferredNameAndLegalName(String pvi) {
+		return dao.getPreferredNameExtended(pvi);
 	}
 	
 	@Override

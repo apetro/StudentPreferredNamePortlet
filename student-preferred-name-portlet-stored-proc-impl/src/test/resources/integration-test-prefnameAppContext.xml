@@ -92,6 +92,11 @@
         <property name="password" value="${updateJdbc.password}" />
     </bean>
     
+    <bean id="namedParameterJdbcOperationsAdmin" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <qualifier value="prefnameAdmin" />
+        <constructor-arg ref="adminDataSource" />
+    </bean>
+    
     <bean id="adminDataSource" class="org.jasig.portlet.utils.jdbc.TomcatDataSourceFactory">
         <qualifier value="prefname" />
         

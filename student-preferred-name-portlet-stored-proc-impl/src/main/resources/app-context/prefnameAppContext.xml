@@ -37,22 +37,6 @@
         <constructor-arg ref="updateDataSource" />
     </bean>
     
-    <bean id="deletePreferredNameFunction" class="edu.wisc.portlet.preferred.dao.DeletePreferredNameFunction" >
-        <constructor-arg ref="adminDataSource" />
-    </bean>
-    
-    <bean id="getPviByNetIdFunction" class="edu.wisc.portlet.preferred.dao.GetPviByNetIdFunction" >
-        <constructor-arg ref="adminDataSource" />
-    </bean>
-    
-    <bean id="hideSourceFunction" class="edu.wisc.portlet.preferred.dao.HideSourceFunction" >
-        <constructor-arg ref="adminDataSource" />
-    </bean>
-    
-    <bean id="unhideSourceFunction" class="edu.wisc.portlet.preferred.dao.UnhideSourceFunction" >
-        <constructor-arg ref="adminDataSource" />
-    </bean>
-    
     <bean id="namedParameterJdbcOperations" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
         <qualifier value="prefname" />
         <constructor-arg ref="updateDataSource" />
@@ -92,8 +76,31 @@
         <property name="password" value="${updateJdbc.password}" />
     </bean>
     
+    <!-- Admin interface -->
+    
+    <bean id="deletePreferredNameFunction" class="edu.wisc.portlet.preferred.dao.DeletePreferredNameFunction" >
+        <constructor-arg ref="adminDataSource" />
+    </bean>
+    
+    <bean id="getPviByNetIdFunction" class="edu.wisc.portlet.preferred.dao.GetPviByNetIdFunction" >
+        <constructor-arg ref="adminDataSource" />
+    </bean>
+    
+    <bean id="hideSourceFunction" class="edu.wisc.portlet.preferred.dao.HideSourceFunction" >
+        <constructor-arg ref="adminDataSource" />
+    </bean>
+    
+    <bean id="unhideSourceFunction" class="edu.wisc.portlet.preferred.dao.UnhideSourceFunction" >
+        <constructor-arg ref="adminDataSource" />
+    </bean>
+    
+    <bean id="namedParameterJdbcOperationsAdmin" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+        <qualifier value="prefnameAdmin" />
+        <constructor-arg ref="adminDataSource" />
+    </bean>
+    
     <bean id="adminDataSource" class="org.jasig.portlet.utils.jdbc.TomcatDataSourceFactory">
-        <qualifier value="prefname" />
+        <qualifier value="prefnameAdmin" />
         
         <property name="baseObjectName" value="AdminPrefName:section=DataSource,name=" />
         <property name="initialSize" value="1" />
