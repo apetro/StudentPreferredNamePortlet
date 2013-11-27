@@ -76,12 +76,12 @@
 						  		<br/>
 						  		<span class='label'>Middle Name</span>
 					  		</div>
-					  		<div class="edit-name">
-						  		<span style="padding-top:3px;">
+					  		<div class="edit-name" style="padding-top:3px; margin-left:0em; padding-right:0em;">
+						  		<span>
 						  			<form:checkbox path="hideSource" class="uportal-input-text ${n}hide-legal-name" />
 						  		</span>
-						  		<span class='label'>Hide Primary/Legal Name</span>
 					  		</div>
+					  		<span class='label'>Hide Primary/Legal Name</span>
 				  		</div>
 				  		<div class="edit-buttons">
 				  			<span>
