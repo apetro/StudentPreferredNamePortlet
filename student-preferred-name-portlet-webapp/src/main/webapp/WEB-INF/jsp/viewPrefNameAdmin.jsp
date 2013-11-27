@@ -77,7 +77,7 @@
 						  		<span class='label'>Middle Name</span>
 					  		</div>
 					  		<div class="edit-name">
-						  		<span>
+						  		<span style="padding-top:3px;">
 						  			<form:checkbox path="hideSource" class="uportal-input-text ${n}hide-legal-name" />
 						  		</span>
 						  		<span class='label'>Hide Primary/Legal Name</span>
