@@ -80,7 +80,6 @@
 						  		<span>
 						  			<form:checkbox path="hideSource" class="uportal-input-text ${n}hide-legal-name" />
 						  		</span>
-						  		<br/>
 						  		<span class='label'>Hide Primary/Legal Name</span>
 					  		</div>
 				  		</div>
