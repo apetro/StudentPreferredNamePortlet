@@ -30,7 +30,7 @@ public class DeletePreferredNameFunctionTest extends DeletePreferredNameFunction
 	public void before() {
 		MockitoAnnotations.initMocks(this);
 		super.before();
-		DeletePreferredNameFunction dao = new DeletePreferredNameFunction(ds);
+		DeletePreferredNameAdminFunction dao = new DeletePreferredNameAdminFunction(ds);
 		jdbcTemplate.setDataSource(ds);
 		dao.setJdbcTemplate(jdbcTemplate);
 		super.setDao(dao);
@@ -40,7 +40,7 @@ public class DeletePreferredNameFunctionTest extends DeletePreferredNameFunction
 	@Test
 	public void testDelete() throws Exception {
 		HashMap<String,Object> mockResult = new HashMap<String,Object>();
-		mockResult.put(DeletePreferredNameFunction.FUNC_RETURN, "Success");
+		mockResult.put(DeletePreferredNameAdminFunction.FUNC_RETURN, "Success");
 		
 		when(jdbcTemplate.call(any(CallableStatementCreator.class), any(List.class))).thenReturn(mockResult);
 		super.testDelete();

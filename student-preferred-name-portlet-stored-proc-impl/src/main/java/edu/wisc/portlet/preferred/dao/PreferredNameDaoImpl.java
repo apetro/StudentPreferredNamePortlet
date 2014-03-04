@@ -26,11 +26,16 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
     private NamedParameterJdbcOperations jdbcTemplate;
     private NamedParameterJdbcOperations jdbcTemplateAdmin;
     private UpdatePreferredNameProcedure updatePreferredName;
-    private DeletePreferredNameFunction deletePreferredNameAdmin;
+    private DeletePreferredNameUserFunction deletePreferredNameUserFunction;
+    private DeletePreferredNameAdminFunction deletePreferredNameAdmin;
     private HideSourceFunction hideSourceFunction;
     private UnhideSourceFunction unhideSourceFunction;
     private GetPviByNetIdFunction getPviByNetIdFunction;
 	
+    @Autowired
+    public void setDeletePreferredNameUserFunction(DeletePreferredNameUserFunction dpnuf) {
+        this.deletePreferredNameUserFunction = dpnuf;
+    }
 	@Autowired
     public void setJdbcTemplate(@Qualifier("prefname") NamedParameterJdbcOperations jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -47,7 +52,7 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
     }
 	
 	@Autowired
-	public void setDeletePreferredName(DeletePreferredNameFunction deletePrefNameProc) {
+	public void setDeletePreferredName(DeletePreferredNameAdminFunction deletePrefNameProc) {
 		this.deletePreferredNameAdmin = deletePrefNameProc;
 	}
 	
@@ -102,8 +107,7 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
 	@Transactional
 	@TriggersRemove(cacheName="prefname")
 	public void deletePreferredName(String pvi) {
-		updatePreferredName.updatePrefferedName(new PreferredName(pvi));
-		
+		deletePreferredNameUserFunction.deletePreferredNameUser(pvi);
 	}
 	
 	@Override
