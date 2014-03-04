@@ -78,7 +78,11 @@
     
     <!-- Admin interface -->
     
-    <bean id="deletePreferredNameFunction" class="edu.wisc.portlet.preferred.dao.DeletePreferredNameFunction" >
+    <bean id="deletePreferredNameAdminFunction" class="edu.wisc.portlet.preferred.dao.DeletePreferredNameAdminFunction" >
+        <constructor-arg ref="adminDataSource" />
+    </bean>
+    
+    <bean id="deletePreferredNameUserFunction" class="edu.wisc.portlet.preferred.dao.DeletePreferredNameUserFunction" >
         <constructor-arg ref="adminDataSource" />
     </bean>
     

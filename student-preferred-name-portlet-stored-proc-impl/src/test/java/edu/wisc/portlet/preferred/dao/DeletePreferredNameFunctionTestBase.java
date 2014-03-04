@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class DeletePreferredNameFunctionTestBase {
 	
-	private DeletePreferredNameFunction dao;
+	private DeletePreferredNameAdminFunction dao;
 	protected String pvi;
 	
 	public void before() {
@@ -15,7 +15,7 @@ public class DeletePreferredNameFunctionTestBase {
 	}
 	
 	@Autowired
-	public void setDao (DeletePreferredNameFunction dao) {
+	public void setDao (DeletePreferredNameAdminFunction dao) {
 		this.dao = dao;
 	}
 

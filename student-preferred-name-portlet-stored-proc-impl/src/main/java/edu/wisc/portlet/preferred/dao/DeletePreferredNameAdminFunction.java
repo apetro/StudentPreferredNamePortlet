@@ -11,13 +11,13 @@ import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.object.StoredProcedure;
 
-public class DeletePreferredNameFunction extends StoredProcedure {
+public class DeletePreferredNameAdminFunction extends StoredProcedure {
 	private static final String SQL = "msnprefname.DELETE_PREFERRED_NAME_ADMIN";
 	private static final String PVI = "P_PVI_I";
 	protected static final String FUNC_RETURN = "returnname";
 	private static final String SUCCESS = "Success";
 	
-    public DeletePreferredNameFunction(DataSource dataSource) {
+    public DeletePreferredNameAdminFunction(DataSource dataSource) {
         setDataSource(dataSource);
         setFunction(true);
         setSql(SQL);
