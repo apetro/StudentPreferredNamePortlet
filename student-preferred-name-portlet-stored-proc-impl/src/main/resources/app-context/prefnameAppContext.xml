@@ -46,6 +46,10 @@
         <qualifier value="prefname" />
         <property name="dataSource" ref="updateDataSource" />
     </bean>
+    
+    <bean id="deletePreferredNameUserFunction" class="edu.wisc.portlet.preferred.dao.DeletePreferredNameUserFunction" >
+        <constructor-arg ref="updateDataSource" />
+    </bean>
 
     <bean id="updateDataSource" class="org.jasig.portlet.utils.jdbc.TomcatDataSourceFactory">
         <qualifier value="prefname" />
@@ -79,10 +83,6 @@
     <!-- Admin interface -->
     
     <bean id="deletePreferredNameAdminFunction" class="edu.wisc.portlet.preferred.dao.DeletePreferredNameAdminFunction" >
-        <constructor-arg ref="adminDataSource" />
-    </bean>
-    
-    <bean id="deletePreferredNameUserFunction" class="edu.wisc.portlet.preferred.dao.DeletePreferredNameUserFunction" >
         <constructor-arg ref="adminDataSource" />
     </bean>
     

@@ -41,10 +41,6 @@
         <constructor-arg ref="adminDataSource" />
     </bean>
     
-    <bean id="deletePreferredNameUserFunction" class="edu.wisc.portlet.preferred.dao.DeletePreferredNameUserFunction" >
-        <constructor-arg ref="adminDataSource" />
-    </bean>
-     
     <bean id="getPviByNetIdFunction" class="edu.wisc.portlet.preferred.dao.GetPviByNetIdFunction" >
         <constructor-arg ref="adminDataSource" />
     </bean>
@@ -55,6 +51,10 @@
     
     <bean id="unhideSourceFunction" class="edu.wisc.portlet.preferred.dao.UnhideSourceFunction" >
         <constructor-arg ref="adminDataSource" />
+    </bean>
+    
+    <bean id="deletePreferredNameUserFunction" class="edu.wisc.portlet.preferred.dao.DeletePreferredNameUserFunction" >
+        <constructor-arg ref="updateDataSource" />
     </bean>
     
 	<bean id="namedParameterJdbcOperations" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
