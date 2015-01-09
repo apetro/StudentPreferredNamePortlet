@@ -32,10 +32,11 @@ public class PreferredNameServiceImpl implements PreferredNameService {
 	@Override
 	public String getStatus(PreferredName ldapPn) {
 		PreferredName jdbcPn = dao.getPreferredName(ldapPn.getPvi());
-		if(StringUtils.isEmpty(ldapPn.getFirstName()) 
+		if(        StringUtils.isEmpty(ldapPn.getFirstName()) 
 				&& StringUtils.isEmpty(ldapPn.getMiddleName()) 
+				&& StringUtils.isEmpty(ldapPn.getLastName())
 				&& (jdbcPn == null 
-					|| (StringUtils.isEmpty(jdbcPn.getFirstName()) && StringUtils.isEmpty(jdbcPn.getMiddleName()))
+					|| (StringUtils.isEmpty(jdbcPn.getFirstName()) && StringUtils.isEmpty(jdbcPn.getMiddleName()) && StringUtils.isEmpty(jdbcPn.getLastName()) )
 				   )
 		) {
 			return "(not set)";

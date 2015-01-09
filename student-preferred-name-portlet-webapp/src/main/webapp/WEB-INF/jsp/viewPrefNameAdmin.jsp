@@ -44,7 +44,8 @@
 				<c:if test="${!empty error || !empty hasError}">
 					<div class="error">
 						<span>${error}</span>
-						<span><form:errors path="firstName" cssClass="error"/>&nbsp;<form:errors path="middleName" cssClass="error"/></span>
+						<span><form:errors path="firstName" cssClass="error"/>&nbsp;<form:errors path="middleName" cssClass="error"/>
+                              &nbsp;<form:errors path="lastName" cssClass="error"/></span>
 					</div>
 				</c:if>
 	  			<form:hidden path="pvi"/>
@@ -76,6 +77,14 @@
 						  		<br/>
 						  		<span class='label'>Middle Name</span>
 					  		</div>
+                            <div class="edit-name">
+                                <span>
+                                    ${preferredName.lastName }
+                                    <form:hidden path="lastName" class="${n}last-name" />
+                                </span>
+                                <br/>
+                                <span class='label'>Last Name</span>
+                            </div>
 					  		<div class="edit-name" style="padding-top:3px; margin-left:0em; padding-right:0em;">
 						  		<span>
 						  			<form:checkbox path="hideSource" class="uportal-input-text ${n}hide-legal-name" />

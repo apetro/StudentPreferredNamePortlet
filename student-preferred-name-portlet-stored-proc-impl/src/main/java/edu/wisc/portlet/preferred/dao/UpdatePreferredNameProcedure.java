@@ -19,6 +19,7 @@ public class UpdatePreferredNameProcedure extends StoredProcedure {
         this.declareParameter(new SqlParameter("pvi", Types.VARCHAR));
         this.declareParameter(new SqlParameter("firstName", Types.VARCHAR));
         this.declareParameter(new SqlParameter("middleName", Types.VARCHAR));
+        this.declareParameter(new SqlParameter("lastName", Types.VARCHAR));
         
         this.compile();
     }
@@ -28,6 +29,7 @@ public class UpdatePreferredNameProcedure extends StoredProcedure {
         args.put("pvi", pn.getPvi());
         args.put("firstName", pn.getFirstName());
         args.put("middleName", pn.getMiddleName());
+        args.put("lastName", pn.getMiddleName());
         
         this.execute(args);
     }

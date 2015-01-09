@@ -44,14 +44,16 @@ public class PersonalInformationController {
 		PreferredName preferredName = preferredNameService.getPreferredName(pvi);
 		String currentFirstName = userInfo.get("wiscedupreferredfirstname");
 		String currentMiddleName = userInfo.get("wiscedupreferredmiddlename");
+		String currentLastName = userInfo.get("wiscedupreferredlastname");
 		
 		if(preferredName != null) {
 			//view stuff
 			modelMap.addAttribute("firstName", preferredName.getFirstName());
 			modelMap.addAttribute("middleName", preferredName.getMiddleName());
+			modelMap.addAttribute("lastName", preferredName.getLastName());
 		}
 		
-		modelMap.addAttribute("pendingStatus",preferredNameService.getStatus(new PreferredName(currentFirstName, currentMiddleName,pvi)));
+		modelMap.addAttribute("pendingStatus",preferredNameService.getStatus(new PreferredName(currentFirstName, currentMiddleName,currentLastName,pvi)));
 		modelMap.addAttribute("sirName",userInfo.get("sn"));
 		modelMap.addAttribute("displayName",userInfo.get("displayName"));
 		

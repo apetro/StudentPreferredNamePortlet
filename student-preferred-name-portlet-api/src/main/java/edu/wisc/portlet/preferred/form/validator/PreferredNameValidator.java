@@ -31,12 +31,17 @@ public class PreferredNameValidator implements Validator {
 			errors.rejectValue("middleName", "error.toolong");
 		}
 		
+		if(!StringUtils.isEmpty(pn.getLastName()) && pn.getLastName().length() > 30) {
+            errors.rejectValue("lastName", "error.toolong");
+        }
+		
 		final String regx = "^[A-Za-z .-]*$";
 		Pattern ptrn = Pattern.compile(regx);
 		Matcher fnameMatcher = ptrn.matcher(pn.getFirstName());
 		Matcher mnameMatcher = ptrn.matcher(pn.getMiddleName());
+		Matcher lnameMatcher = ptrn.matcher(pn.getLastName());
 		
-		if(!fnameMatcher.find() || !mnameMatcher.find()) {
+		if(!fnameMatcher.find() || !mnameMatcher.find() || !lnameMatcher.find()) {
 			errors.rejectValue("firstName", "error.invalidCharacter");
 		}
 	}

@@ -46,7 +46,14 @@
 		  		    	&nbsp;${middleName}
 		  		    </c:if>
 		  		    <c:if test="${!empty firstName }">
-		  		    	&nbsp;${sirName}
+                        <c:choose>
+                            <c:when test="${!empty lastName}">
+                                &nbsp;${lastName}
+                            </c:when>
+                            <c:otherwise>
+                                &nbsp;${sirName}
+                            </c:otherwise>
+                        </c:choose>
 		  		    </c:if>
 		  		    &nbsp;<span class="uportal-channel-table-caption">${pendingStatus }</span>
 		  		    &nbsp;<a href="#" onclick="studentPreferredNamePortlet.displayEdit(true);"><spring:message code="edit"/></a>
@@ -57,7 +64,10 @@
 	  	<form action="${savePreferredNameURL}" method="post">
 			<spring:nestedPath path="preferredName">
 			  	<div class='${n}edit-error pref-name-edit-error' style="display: none; padding: .5em;">
-			  		<span><form:errors path="firstName" cssClass="error"/>&nbsp;<form:errors path="middleName" cssClass="error"/></span>
+			  		<span><form:errors path="firstName" cssClass="error"/>
+                          &nbsp;<form:errors path="middleName" cssClass="error"/>
+                          &nbsp;<form:errors path="lastName" cssClass="error"/>
+                    </span>
 			  	</div>
 			  	<div class="contact-info-pref-name-edit ${n}edit" style="display: none;">
 			  		<span class="uportal-channel-strong">
@@ -65,7 +75,7 @@
 			  		</span>
 			  		<div style="margin-left: 1em;">
 			  			<div>
-				  			<spring:message code="text.enteryour" text="Enter your preferred first and middle names: " />
+				  			<spring:message code="text.enteryour" text="Enter your preferred names: " />
 				  		</div>
 				  		<div>
 				  			<div class="edit-name">
@@ -82,6 +92,13 @@
 					  		<br/>
 					  		<span class='label'>Middle Name</span>
 					  		</div>
+                            <div class="edit-name">
+                            <span>
+                                <form:input path="lastName" class="uportal-input-text ${n}last-name" maxlength="30" />
+                            </span>
+                            <br/>
+                            <span class='label'>Last Name</span>
+                            </div>
 				  		</div>
 				  		<div class="edit-buttons">
 				  			<span>
