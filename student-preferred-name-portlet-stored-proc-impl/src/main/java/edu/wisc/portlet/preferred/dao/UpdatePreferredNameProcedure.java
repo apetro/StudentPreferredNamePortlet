@@ -29,7 +29,7 @@ public class UpdatePreferredNameProcedure extends StoredProcedure {
         args.put("pvi", pn.getPvi());
         args.put("firstName", pn.getFirstName());
         args.put("middleName", pn.getMiddleName());
-        args.put("lastName", pn.getMiddleName());
+        args.put("lastName", pn.getLastName());
         
         this.execute(args);
     }

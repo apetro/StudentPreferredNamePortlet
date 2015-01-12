@@ -132,6 +132,7 @@ var mname = "";
       $(".${n}edit-error").hide();
       fname = $(".${n}first-name").val();
       mname = $(".${n}middle-name").val();
+      lname = $(".${n}last-name").val();
       
       studentPreferredNamePortlet.displayEdit = function (enable) {
     	  if(enable) {
@@ -144,8 +145,10 @@ var mname = "";
     		  $(".${n}view").show();
     		  $(".${n}first-name").val(fname);
     		  $(".${n}middle-name").val(mname);
+    		  $(".${n}last-name").val(lname);
     		  fname = "";
     		  mname = "";
+    		  lname = "";
     	  }
       }
    });			

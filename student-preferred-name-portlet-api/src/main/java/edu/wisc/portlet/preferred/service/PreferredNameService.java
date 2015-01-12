@@ -6,7 +6,11 @@ import edu.wisc.portlet.preferred.form.PreferredNameExtended;
 public interface PreferredNameService {
 	public PreferredName getPreferredName(String pvi);
 	
+	public PreferredName getPreferredName(String pvi, String legalLastName);
+	
 	public PreferredNameExtended getPreferredNameAndLegalName(String pvi);
+	
+	public PreferredNameExtended getPreferredNameAndLegalName(String pvi, PreferredName pn);
 	
 	public String getStatus(PreferredName pn);
 	
@@ -19,4 +23,5 @@ public interface PreferredNameService {
 	public void deletePreferredNameAdmin(String pvi);
 	
 	public String getPviFromNetId(String netId);
+
 }

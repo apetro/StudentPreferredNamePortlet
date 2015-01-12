@@ -25,8 +25,26 @@ public class PreferredNameServiceImpl implements PreferredNameService {
 	}
 	
 	@Override
+    public PreferredNameExtended getPreferredNameAndLegalName(String pvi, PreferredName pn) {
+	    PreferredNameExtended preferredNameExtended = dao.getPreferredNameExtended(pvi);
+	    preferredNameExtended.setFirstName(pn.getFirstName());
+	    preferredNameExtended.setMiddleName(pn.getMiddleName());
+	    preferredNameExtended.setLastName(pn.getLastName());
+        return preferredNameExtended; 
+    }
+	
+	@Override
 	public PreferredName getPreferredName(String pvi) {
-		return dao.getPreferredName(pvi);
+	    return getPreferredName(pvi, null);
+	}
+	
+	@Override
+	public PreferredName getPreferredName(String pvi, String legalLastName) {
+	    PreferredName pn = dao.getPreferredName(pvi);
+	    if(StringUtils.isEmpty(pn.getLastName())) {
+	      pn.setLastName(legalLastName);
+	    }
+		return pn;
 	}
 
 	@Override
