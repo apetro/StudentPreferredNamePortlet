@@ -23,9 +23,12 @@ public class PreferredNameValidator implements Validator {
 	    if(! (target instanceof PreferredNameExtended)) {
 	      throw new IllegalArgumentException("Target must be of type " + PreferredNameExtended.class.getName());
 	    }
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "error.required");
 		
 		PreferredNameExtended pn = (PreferredNameExtended)target;
+		
+		if(StringUtils.isBlank(pn.getFirstName())) {
+		  errors.rejectValue("firstName", "error.required");
+		}
 		
 		if(!StringUtils.isEmpty(pn.getFirstName()) && pn.getFirstName().length() > 30) {
 			errors.rejectValue("firstName", "error.toolong");
@@ -44,17 +47,14 @@ public class PreferredNameValidator implements Validator {
 		Matcher fnameMatcher = ptrn.matcher(pn.getFirstName());
 		Matcher mnameMatcher = ptrn.matcher(pn.getMiddleName());
 		
-		final String lnameregx = "^[A-Za-z .-']*$";
+		final String lnameregx = "^[A-Za-z .-\\\\']*$";
         Pattern lnameptrn = Pattern.compile(lnameregx);
         Matcher lnameMatcher = lnameptrn.matcher(pn.getLastName());
 		
 		if(!fnameMatcher.find() || !mnameMatcher.find() || !lnameMatcher.find()) {
 			errors.rejectValue("firstName", "error.invalidCharacter");
-		}
-		
-		//last name validation
-		//can only change the last name casing, spacing, and punctuation
-		if(!StringUtils.isBlank(pn.getLastName())) {
+		} else if(!StringUtils.isBlank(pn.getLastName())) {
+		  //can only change the last name casing, spacing, and punctuation
 		  //strip out all the spacing, ', and -
 		  String comparableLastName = pn.getLastName().replaceAll(" ", "").replaceAll("\'", "").replaceAll("-", "");
 		  //do the same op to the legal name just in case HRS starts to get fancy

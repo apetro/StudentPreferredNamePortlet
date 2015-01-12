@@ -3,6 +3,17 @@ package edu.wisc.portlet.preferred.form;
 import org.apache.commons.lang.StringUtils;
 
 public class PreferredNameExtended extends PreferredName {
+  
+    public PreferredNameExtended() {
+      super();
+    }
+  
+    public PreferredNameExtended (PreferredName pn, String legalSirName) {
+      this.legalLastName = legalSirName;
+      this.setFirstName(pn.getFirstName());
+      this.setMiddleName(pn.getMiddleName());
+      this.setLastName(pn.getLastName());
+    }
 
 	private static final long serialVersionUID = 1L;
 	

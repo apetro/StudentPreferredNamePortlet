@@ -2,6 +2,7 @@ package edu.wisc.portlet.preferred.web;
 
 import java.util.Map;
 
+import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletMode;
 import javax.portlet.PortletModeException;
@@ -102,12 +103,15 @@ public class PersonalInformationController {
 	}
 	
 	@ActionMapping(params="action=savePreferredName")
-	public void submitEdit(ActionResponse response, PreferredName preferredName, BindingResult bindingResult) throws PortletModeException {
+	public void submitEdit(ActionRequest request, ActionResponse response, PreferredName preferredName, BindingResult bindingResult) throws PortletModeException {
 	    final String pvi = PrimaryAttributeUtils.getPrimaryId();
-	    PreferredNameExtended preferredNameAndLegalName = preferredNameService.getPreferredNameAndLegalName(pvi, preferredName);
+	    @SuppressWarnings("unchecked")
+        Map<String, String> userInfo = (Map <String, String>) request.getAttribute(PortletRequest.USER_INFO);
+        
+	    PreferredNameExtended pne = new PreferredNameExtended(preferredName, userInfo.get("sn"));
 	    
 		//validation
-		ValidationUtils.invokeValidator(new PreferredNameValidator(), preferredNameAndLegalName, bindingResult);
+		ValidationUtils.invokeValidator(new PreferredNameValidator(), pne, bindingResult);
 		if(!bindingResult.hasErrors()) {
 			//submit changes to DAO
 			
