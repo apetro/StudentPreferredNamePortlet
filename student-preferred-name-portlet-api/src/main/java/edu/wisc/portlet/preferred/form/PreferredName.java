@@ -1,9 +1,11 @@
 package edu.wisc.portlet.preferred.form;
 
 import java.io.Serializable;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 public class PreferredName implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
     private String firstName;
     
@@ -79,52 +81,31 @@ public class PreferredName implements Serializable {
 		this.pvi = pvi;
 	}
 
-  @Override
+  /**
+   * @see java.lang.Object#equals(Object)
+   */
+  public boolean equals(Object object) {
+    if (!(object instanceof PreferredName)) {
+      return false;
+    }
+    PreferredName rhs = (PreferredName) object;
+    return new EqualsBuilder().appendSuper(super.equals(object))
+        .append(this.middleName, rhs.middleName).append(this.lastName, rhs.lastName)
+        .append(this.hideSource, rhs.hideSource).append(this.firstName, rhs.firstName)
+        .append(this.pvi, rhs.pvi).isEquals();
+  }
+
+  /**
+   * @see java.lang.Object#hashCode()
+   */
   public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-    result = prime * result + (hideSource ? 1231 : 1237);
-    result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-    result = prime * result + ((middleName == null) ? 0 : middleName.hashCode());
-    result = prime * result + ((pvi == null) ? 0 : pvi.hashCode());
-    return result;
+    return new HashCodeBuilder(262444801, 597203845).appendSuper(super.hashCode())
+        .append(this.middleName).append(this.lastName).append(this.hideSource)
+        .append(this.firstName).append(this.pvi).toHashCode();
   }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj)
-      return true;
-    if (obj == null)
-      return false;
-    if (getClass() != obj.getClass())
-      return false;
-    PreferredName other = (PreferredName) obj;
-    if (firstName == null) {
-      if (other.firstName != null)
-        return false;
-    } else if (!firstName.equals(other.firstName))
-      return false;
-    if (hideSource != other.hideSource)
-      return false;
-    if (lastName == null) {
-      if (other.lastName != null)
-        return false;
-    } else if (!lastName.equals(other.lastName))
-      return false;
-    if (middleName == null) {
-      if (other.middleName != null)
-        return false;
-    } else if (!middleName.equals(other.middleName))
-      return false;
-    if (pvi == null) {
-      if (other.pvi != null)
-        return false;
-    } else if (!pvi.equals(other.pvi))
-      return false;
-    return true;
-  }
-
+  
+  
+	
 	
 
 }

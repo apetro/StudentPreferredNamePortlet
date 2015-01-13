@@ -8,8 +8,8 @@ public class PreferredNameExtended extends PreferredName {
       super();
     }
   
-    public PreferredNameExtended (PreferredName pn, String legalSirName) {
-      this.legalLastName = legalSirName;
+    public PreferredNameExtended (PreferredName pn, String legalSurName) {
+      this.legalLastName = legalSurName;
       this.setFirstName(pn.getFirstName());
       this.setMiddleName(pn.getMiddleName());
       this.setLastName(pn.getLastName());

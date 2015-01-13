@@ -47,7 +47,7 @@ public class PreferredNameValidator implements Validator {
 		Matcher fnameMatcher = ptrn.matcher(pn.getFirstName());
 		Matcher mnameMatcher = ptrn.matcher(pn.getMiddleName());
 		
-		final String lnameregx = "^[A-Za-z .-\\\\']*$";
+		final String lnameregx = "^[A-Za-z \\\\'-]*$";
         Pattern lnameptrn = Pattern.compile(lnameregx);
         Matcher lnameMatcher = lnameptrn.matcher(pn.getLastName());
 		
