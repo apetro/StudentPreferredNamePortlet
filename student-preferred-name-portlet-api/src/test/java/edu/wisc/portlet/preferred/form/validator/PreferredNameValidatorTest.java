@@ -78,4 +78,20 @@ public class PreferredNameValidatorTest {
       fail(bn.getAllErrors().toString());
     }
   }
+  
+  @Test
+  public void testHyphenInLastName() {
+    
+    BindingResult bn = new MapBindingResult(new HashMap<String, String>(), "pn");
+    
+    pne.setLastName("Time-Lev");
+    pne.setLegalLastName("TIMELEV");
+    
+    ValidationUtils.invokeValidator(new PreferredNameValidator(), pne, bn);
+    
+    if(bn.hasErrors()) {
+      //shouldn't have failed
+      fail(bn.getAllErrors().toString());
+    }
+  }
 }
