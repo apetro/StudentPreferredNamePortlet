@@ -2,12 +2,14 @@ package edu.wisc.portlet.preferred.web;
 
 import java.util.Map;
 
+import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
 import javax.portlet.PortletMode;
 import javax.portlet.PortletModeException;
 import javax.portlet.PortletRequest;
 import javax.portlet.RenderRequest;
 
+import org.apache.commons.lang.StringUtils;
 import org.jasig.springframework.security.portlet.authentication.PrimaryAttributeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,7 @@ import org.springframework.web.portlet.bind.annotation.ActionMapping;
 import org.springframework.web.portlet.bind.annotation.RenderMapping;
 
 import edu.wisc.portlet.preferred.form.PreferredName;
+import edu.wisc.portlet.preferred.form.PreferredNameExtended;
 import edu.wisc.portlet.preferred.form.validator.PreferredNameValidator;
 import edu.wisc.portlet.preferred.service.PreferredNameService;
 
@@ -41,17 +44,20 @@ public class PersonalInformationController {
 		Map<String, String> userInfo = (Map <String, String>) request.getAttribute(PortletRequest.USER_INFO);
 		final String pvi = PrimaryAttributeUtils.getPrimaryId();
 		
-		PreferredName preferredName = preferredNameService.getPreferredName(pvi);
+		PreferredName preferredName = preferredNameService.getPreferredName(pvi, userInfo.get("sn"));
 		String currentFirstName = userInfo.get("wiscedupreferredfirstname");
 		String currentMiddleName = userInfo.get("wiscedupreferredmiddlename");
+		String currentLastName = userInfo.get("wiscedupreferredlastname");
 		
 		if(preferredName != null) {
 			//view stuff
 			modelMap.addAttribute("firstName", preferredName.getFirstName());
 			modelMap.addAttribute("middleName", preferredName.getMiddleName());
+			
+			modelMap.addAttribute("lastName", preferredName.getLastName());
 		}
 		
-		modelMap.addAttribute("pendingStatus",preferredNameService.getStatus(new PreferredName(currentFirstName, currentMiddleName,pvi)));
+		modelMap.addAttribute("pendingStatus",preferredNameService.getStatus(new PreferredName(currentFirstName, currentMiddleName,currentLastName,pvi)));
 		modelMap.addAttribute("sirName",userInfo.get("sn"));
 		modelMap.addAttribute("displayName",userInfo.get("displayName"));
 		
@@ -97,12 +103,18 @@ public class PersonalInformationController {
 	}
 	
 	@ActionMapping(params="action=savePreferredName")
-	public void submitEdit(ActionResponse response, PreferredName preferredName, BindingResult bindingResult) throws PortletModeException {
+	public void submitEdit(ActionRequest request, ActionResponse response, PreferredName preferredName, BindingResult bindingResult) throws PortletModeException {
+	    final String pvi = PrimaryAttributeUtils.getPrimaryId();
+	    @SuppressWarnings("unchecked")
+        Map<String, String> userInfo = (Map <String, String>) request.getAttribute(PortletRequest.USER_INFO);
+        
+	    PreferredNameExtended pne = new PreferredNameExtended(preferredName, userInfo.get("sn"));
+	    
 		//validation
-		ValidationUtils.invokeValidator(new PreferredNameValidator(), preferredName, bindingResult);
+		ValidationUtils.invokeValidator(new PreferredNameValidator(), pne, bindingResult);
 		if(!bindingResult.hasErrors()) {
 			//submit changes to DAO
-			final String pvi = PrimaryAttributeUtils.getPrimaryId();
+			
 			preferredName.setPvi(pvi);
 			
 			preferredNameService.setPreferredName(preferredName);

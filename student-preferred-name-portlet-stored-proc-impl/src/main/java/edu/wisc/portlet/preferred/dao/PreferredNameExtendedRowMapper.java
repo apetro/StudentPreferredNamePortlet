@@ -17,6 +17,7 @@ public class PreferredNameExtendedRowMapper  implements RowMapper<PreferredNameE
         
         preferredName.setFirstName(rs.getString("pref_fname"));
         preferredName.setMiddleName(rs.getString("pref_mname"));
+        preferredName.setLastName(rs.getString("pref_lname"));
         preferredName.setPvi(rs.getString("pvi"));
         preferredName.setHideSource("Y".equalsIgnoreCase(rs.getString("HIDE_LEGAL_NAME")));
         

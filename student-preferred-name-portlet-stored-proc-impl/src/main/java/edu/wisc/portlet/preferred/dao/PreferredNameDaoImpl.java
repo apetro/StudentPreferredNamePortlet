@@ -77,7 +77,7 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
 		final Map<String, String> args = new LinkedHashMap<String, String>();
         args.put("pvi", pvi);
         
-        List<PreferredName> query = jdbcTemplate.query("select first_name, middle_name, pvi, HIDE_LEGAL_NAME from msnprefname.msn_preferred_name where pvi = :pvi", 
+        List<PreferredName> query = jdbcTemplate.query("select first_name, middle_name, last_name, pvi, HIDE_LEGAL_NAME from msnprefname.msn_preferred_name where pvi = :pvi", 
                 args, 
                 PreferredNameRowMapper.INTANCE);
         
@@ -89,7 +89,7 @@ public class PreferredNameDaoImpl implements PreferredNameDao  {
 		final Map<String, String> args = new LinkedHashMap<String, String>();
         args.put("pvi", pvi);
         
-        List<PreferredNameExtended> query = jdbcTemplateAdmin.query("SELECT PVI,PREF_FNAME,PREF_MNAME,HIDE_LEGAL_NAME,FIRST_NAME,MIDDLE_NAME,LAST_NAME FROM MSNPREFNAME.PREFERRED_NAME_SEARCH where pvi = :pvi", 
+        List<PreferredNameExtended> query = jdbcTemplateAdmin.query("SELECT PVI,PREF_FNAME,PREF_MNAME,PREF_LNAME,HIDE_LEGAL_NAME,FIRST_NAME,MIDDLE_NAME,LAST_NAME FROM MSNPREFNAME.PREFERRED_NAME_SEARCH where pvi = :pvi", 
                 args, 
                 PreferredNameExtendedRowMapper.INTANCE);
         

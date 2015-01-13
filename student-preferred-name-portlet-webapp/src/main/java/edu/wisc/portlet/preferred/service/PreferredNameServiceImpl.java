@@ -25,17 +25,36 @@ public class PreferredNameServiceImpl implements PreferredNameService {
 	}
 	
 	@Override
+    public PreferredNameExtended getPreferredNameAndLegalName(String pvi, PreferredName pn) {
+	    PreferredNameExtended preferredNameExtended = dao.getPreferredNameExtended(pvi);
+	    preferredNameExtended.setFirstName(pn.getFirstName());
+	    preferredNameExtended.setMiddleName(pn.getMiddleName());
+	    preferredNameExtended.setLastName(pn.getLastName());
+        return preferredNameExtended; 
+    }
+	
+	@Override
 	public PreferredName getPreferredName(String pvi) {
-		return dao.getPreferredName(pvi);
+	    return getPreferredName(pvi, null);
+	}
+	
+	@Override
+	public PreferredName getPreferredName(String pvi, String legalLastName) {
+	    PreferredName pn = dao.getPreferredName(pvi);
+	    if(StringUtils.isEmpty(pn.getLastName())) {
+	      pn.setLastName(legalLastName);
+	    }
+		return pn;
 	}
 
 	@Override
 	public String getStatus(PreferredName ldapPn) {
 		PreferredName jdbcPn = dao.getPreferredName(ldapPn.getPvi());
-		if(StringUtils.isEmpty(ldapPn.getFirstName()) 
+		if(        StringUtils.isEmpty(ldapPn.getFirstName()) 
 				&& StringUtils.isEmpty(ldapPn.getMiddleName()) 
+				&& StringUtils.isEmpty(ldapPn.getLastName())
 				&& (jdbcPn == null 
-					|| (StringUtils.isEmpty(jdbcPn.getFirstName()) && StringUtils.isEmpty(jdbcPn.getMiddleName()))
+					|| (StringUtils.isEmpty(jdbcPn.getFirstName()) && StringUtils.isEmpty(jdbcPn.getMiddleName()) && StringUtils.isEmpty(jdbcPn.getLastName()) )
 				   )
 		) {
 			return "(not set)";

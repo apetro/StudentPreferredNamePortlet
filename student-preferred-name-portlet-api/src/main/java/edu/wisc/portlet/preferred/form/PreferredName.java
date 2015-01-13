@@ -1,13 +1,17 @@
 package edu.wisc.portlet.preferred.form;
 
 import java.io.Serializable;
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
 
 public class PreferredName implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
     private String firstName;
     
     private String middleName;
+    
+    private String lastName;
     
     private String pvi;
     
@@ -27,6 +31,14 @@ public class PreferredName implements Serializable {
 
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
+	}
+	
+	public String getLastName() {
+	  return lastName;
+	}
+
+	public void setLastName(String lastName) {
+      this.lastName = lastName;
 	}
 	
 	public void setPvi(String pvi) {
@@ -49,55 +61,51 @@ public class PreferredName implements Serializable {
 		
 	}
 	
-	public PreferredName(String first, String middle) {
+	public PreferredName(String first, String middle, String last) {
 		this.firstName = first;
 		this.middleName = middle;
+		this.lastName = last;
 	}
 	
-	public PreferredName(String first, String middle, String pvi) {
+	public PreferredName(String first, String middle, String last, String pvi) {
 		this.firstName = first;
 		this.middleName = middle;
+		this.lastName = last;
 		this.pvi = pvi;
 	}
 	
 	public PreferredName(String pvi) {
 		this.firstName = null;
 		this.middleName = null;
+		this.lastName = null;
 		this.pvi = pvi;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result
-				+ ((middleName == null) ? 0 : middleName.hashCode());
-		return result;
-	}
+  /**
+   * @see java.lang.Object#equals(Object)
+   */
+  public boolean equals(Object object) {
+    if (!(object instanceof PreferredName)) {
+      return false;
+    }
+    PreferredName rhs = (PreferredName) object;
+    return new EqualsBuilder().appendSuper(super.equals(object))
+        .append(this.middleName, rhs.middleName).append(this.lastName, rhs.lastName)
+        .append(this.hideSource, rhs.hideSource).append(this.firstName, rhs.firstName)
+        .append(this.pvi, rhs.pvi).isEquals();
+  }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PreferredName other = (PreferredName) obj;
-		if (firstName == null) {
-			if (other.firstName != null)
-				return false;
-		} else if (!firstName.equalsIgnoreCase(other.firstName))
-			return false;
-		if (middleName == null) {
-			if (other.middleName != null)
-				return false;
-		} else if (!middleName.equalsIgnoreCase(other.middleName))
-			return false;
-		return true;
-	}
+  /**
+   * @see java.lang.Object#hashCode()
+   */
+  public int hashCode() {
+    return new HashCodeBuilder(262444801, 597203845).appendSuper(super.hashCode())
+        .append(this.middleName).append(this.lastName).append(this.hideSource)
+        .append(this.firstName).append(this.pvi).toHashCode();
+  }
+  
+  
 	
 	
+
 }
