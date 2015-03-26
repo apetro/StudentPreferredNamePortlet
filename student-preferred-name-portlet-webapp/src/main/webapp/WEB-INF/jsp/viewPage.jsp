@@ -73,40 +73,41 @@
                       <span class="uportal-channel-strong">
                           <spring:message code="label.preferred.name"/>:
                       </span>
-                      <div style="margin-left: 1em;">
-                          <div>
-                              <spring:message code="text.enteryour" text="Enter your preferred names: " />
-                          </div>
-                          <div>
+                      <div class='pref-name-edit'>
+                          <div class='names'>
                               <div class="edit-name">
+                              <span class='label'>First</span>
+                              <br/>
                               <span>
                                   <form:input path="firstName" class="uportal-input-text ${n}first-name" maxlength="30" />
                               </span>
-                              <br/>
-                              <span class='label'>First Name</span>
                               </div>
                               <div class="edit-name">
+                              <span class='label'>Middle</span>
+                              <br/>
                               <span>
                                   <form:input path="middleName" class="uportal-input-text ${n}middle-name" maxlength="30" />
                               </span>
-                              <br/>
-                              <span class='label'>Middle Name</span>
                               </div>
                             <div class="edit-name">
+                            <span class='label'>Last*</span>
+                            <br/>
                             <span>
                                 <form:input path="lastName" class="uportal-input-text ${n}last-name" maxlength="30" />
                             </span>
-                            <br/>
-                            <span class='label'>Last Name</span>
                             </div>
+                          </div>
+                          <div class='info-text'>
+                            *For last name, you may only change capitalization, spacing, apostrophes and dashes.
                           </div>
                           <div class="edit-buttons">
                               <span>
-                                  <a href="#" onclick='studentPreferredNamePortlet.displayEdit(false);' class="uportal-button fancy-cancel"><spring:message code="button.cancel" text="Cancel"/></a>
+                                  <input class="uportal-button fancy-button btn btn-primary" value="${savePreferredName}" type="submit">
                               </span>
                               <span>
-                                  <input class="uportal-button fancy-button" value="${savePreferredName}" type="submit">
+                                  <a href="#" onclick='studentPreferredNamePortlet.displayEdit(false);' class="uportal-button fancy-cancel btn btn-default"><spring:message code="button.cancel" text="Cancel"/></a>
                               </span>
+                              
                           </div>
                           
                       </div>
