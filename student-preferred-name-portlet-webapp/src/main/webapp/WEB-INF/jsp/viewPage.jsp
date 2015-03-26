@@ -63,16 +63,16 @@
           <div class='edit-area'>
           <form action="${savePreferredNameURL}" method="post">
             <spring:nestedPath path="preferredName">
-                  <div class='${n}edit-error pref-name-edit-error' style="display: none; padding: .5em;">
-                      <span><form:errors path="firstName" cssClass="error"/>
-                          &nbsp;<form:errors path="middleName" cssClass="error"/>
-                          &nbsp;<form:errors path="lastName" cssClass="error"/>
-                    </span>
-                  </div>
                   <div class="contact-info-pref-name-edit ${n}edit" style="display: none;">
                       <span class="uportal-channel-strong">
                           <spring:message code="label.preferred.name"/>:
                       </span>
+                      <div class='${n}edit-error pref-name-edit-error' style="display: none; padding: .5em;">
+                          <span><form:errors path="firstName" cssClass="error"/>
+                              &nbsp;<form:errors path="middleName" cssClass="error"/>
+                              &nbsp;<form:errors path="lastName" cssClass="error"/>
+                        </span>
+                      </div>
                       <div class='pref-name-edit'>
                           <div class='names'>
                               <div class="edit-name">
@@ -98,7 +98,7 @@
                             </div>
                           </div>
                           <div class='info-text'>
-                            *For last name, you may only change capitalization, spacing, apostrophes and dashes.
+                            *<spring:message code='error.lastNameWeirdLogicError'/>
                           </div>
                           <div class="edit-buttons">
                               <span>
