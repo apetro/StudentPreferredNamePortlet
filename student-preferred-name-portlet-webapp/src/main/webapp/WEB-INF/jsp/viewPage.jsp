@@ -35,17 +35,17 @@
 <spring:message code="savePreferredName" var="savePreferredName" text="Save"/>
 
 <div id="${n}student-preferred-name" class="student-preferred-name">
-	  <div class="contact-info-official-name">
-  		<span class="uportal-channel-strong"><spring:message code="label.official.name"/>:</span>
-  		<span>${displayName}</span>
-  	  </div>
-	  <div class="contact-info-pref-name-view ${n}view">
-	  		<span class="uportal-channel-strong"><spring:message code="label.preferred.name"/>:</span>
-	  		<span>${firstName}
-		  		    <c:if test="${!empty middleName }">
-		  		    	&nbsp;${middleName}
-		  		    </c:if>
-		  		    <c:if test="${!empty firstName }">
+      <div class="contact-info-official-name">
+          <span class="uportal-channel-strong"><spring:message code="label.official.name"/>:</span>
+          <span>${displayName}</span>
+        </div>
+      <div class="contact-info-pref-name-view ${n}view">
+              <span class="uportal-channel-strong"><spring:message code="label.preferred.name"/>:</span>
+              <span>${firstName}
+                      <c:if test="${!empty middleName }">
+                          &nbsp;${middleName}
+                      </c:if>
+                      <c:if test="${!empty firstName }">
                         <c:choose>
                             <c:when test="${!empty lastName}">
                                 &nbsp;${lastName}
@@ -54,44 +54,44 @@
                                 &nbsp;${sirName}
                             </c:otherwise>
                         </c:choose>
-		  		    </c:if>
-		  		    &nbsp;<span class="uportal-channel-table-caption">${pendingStatus }</span>
-		  		    &nbsp;<a href="#" onclick="studentPreferredNamePortlet.displayEdit(true);"><spring:message code="edit"/></a>
-		  		    &nbsp;<a href="${deletePreferredNameURL}" onclick="return confirm('Are you sure you want to delete your preferred name?');"><spring:message code="delete"/></a>
-		  	</span>
-	  	</div>
-	  	<div class='edit-area'>
-	  	<form action="${savePreferredNameURL}" method="post">
-			<spring:nestedPath path="preferredName">
-			  	<div class='${n}edit-error pref-name-edit-error' style="display: none; padding: .5em;">
-			  		<span><form:errors path="firstName" cssClass="error"/>
+                      </c:if>
+                      &nbsp;<span class="uportal-channel-table-caption">${pendingStatus }</span>
+                      &nbsp;<a href="#" onclick="studentPreferredNamePortlet.displayEdit(true);"><spring:message code="edit"/></a>
+                      &nbsp;<a href="${deletePreferredNameURL}" onclick="return confirm('Are you sure you want to delete your preferred name?');"><spring:message code="delete"/></a>
+              </span>
+          </div>
+          <div class='edit-area'>
+          <form action="${savePreferredNameURL}" method="post">
+            <spring:nestedPath path="preferredName">
+                  <div class='${n}edit-error pref-name-edit-error' style="display: none; padding: .5em;">
+                      <span><form:errors path="firstName" cssClass="error"/>
                           &nbsp;<form:errors path="middleName" cssClass="error"/>
                           &nbsp;<form:errors path="lastName" cssClass="error"/>
                     </span>
-			  	</div>
-			  	<div class="contact-info-pref-name-edit ${n}edit" style="display: none;">
-			  		<span class="uportal-channel-strong">
-			  			<spring:message code="label.preferred.name"/>:
-			  		</span>
-			  		<div style="margin-left: 1em;">
-			  			<div>
-				  			<spring:message code="text.enteryour" text="Enter your preferred names: " />
-				  		</div>
-				  		<div>
-				  			<div class="edit-name">
-					  		<span>
-					  			<form:input path="firstName" class="uportal-input-text ${n}first-name" maxlength="30" />
-					  		</span>
-					  		<br/>
-					  		<span class='label'>First Name</span>
-					  		</div>
-					  		<div class="edit-name">
-					  		<span>
-					  			<form:input path="middleName" class="uportal-input-text ${n}middle-name" maxlength="30" />
-					  		</span>
-					  		<br/>
-					  		<span class='label'>Middle Name</span>
-					  		</div>
+                  </div>
+                  <div class="contact-info-pref-name-edit ${n}edit" style="display: none;">
+                      <span class="uportal-channel-strong">
+                          <spring:message code="label.preferred.name"/>:
+                      </span>
+                      <div style="margin-left: 1em;">
+                          <div>
+                              <spring:message code="text.enteryour" text="Enter your preferred names: " />
+                          </div>
+                          <div>
+                              <div class="edit-name">
+                              <span>
+                                  <form:input path="firstName" class="uportal-input-text ${n}first-name" maxlength="30" />
+                              </span>
+                              <br/>
+                              <span class='label'>First Name</span>
+                              </div>
+                              <div class="edit-name">
+                              <span>
+                                  <form:input path="middleName" class="uportal-input-text ${n}middle-name" maxlength="30" />
+                              </span>
+                              <br/>
+                              <span class='label'>Middle Name</span>
+                              </div>
                             <div class="edit-name">
                             <span>
                                 <form:input path="lastName" class="uportal-input-text ${n}last-name" maxlength="30" />
@@ -99,28 +99,28 @@
                             <br/>
                             <span class='label'>Last Name</span>
                             </div>
-				  		</div>
-				  		<div class="edit-buttons">
-				  			<span>
-					  			<a href="#" onclick='studentPreferredNamePortlet.displayEdit(false);' class="uportal-button fancy-cancel"><spring:message code="button.cancel" text="Cancel"/></a>
-					  		</span>
-					  		<span>
-					  			<input class="uportal-button fancy-button" value="${savePreferredName}" type="submit">
-					  		</span>
-				  		</div>
-				  		
-			  		</div>
-			  	</div>
-		  	</spring:nestedPath>
-		</form>
-		</div>
-		<div class='edit-notice'>
-	  		<c:if test="${!empty prefs['notice'][0]}">
-			  <p>
-			  	 ${prefs['notice'][0]}
-			  </p>
-			</c:if>
-		</div>
+                          </div>
+                          <div class="edit-buttons">
+                              <span>
+                                  <a href="#" onclick='studentPreferredNamePortlet.displayEdit(false);' class="uportal-button fancy-cancel"><spring:message code="button.cancel" text="Cancel"/></a>
+                              </span>
+                              <span>
+                                  <input class="uportal-button fancy-button" value="${savePreferredName}" type="submit">
+                              </span>
+                          </div>
+                          
+                      </div>
+                  </div>
+              </spring:nestedPath>
+        </form>
+        </div>
+        <div class='edit-notice'>
+              <c:if test="${!empty prefs['notice'][0]}">
+              <p>
+                   ${prefs['notice'][0]}
+              </p>
+            </c:if>
+        </div>
 </div>
 
 <script type="text/javascript">
@@ -135,23 +135,23 @@ var mname = "";
       lname = $(".${n}last-name").val();
       
       studentPreferredNamePortlet.displayEdit = function (enable) {
-    	  if(enable) {
-    		  $(".${n}edit").show();
-    		  $(".${n}view").hide();
-    		  
-    	  } else {
-    		  $(".${n}edit").hide();
-    		  $(".${n}edit-error").hide();
-    		  $(".${n}view").show();
-    		  $(".${n}first-name").val(fname);
-    		  $(".${n}middle-name").val(mname);
-    		  $(".${n}last-name").val(lname);
-    		  fname = "";
-    		  mname = "";
-    		  lname = "";
-    	  }
+          if(enable) {
+              $(".${n}edit").show();
+              $(".${n}view").hide();
+              
+          } else {
+              $(".${n}edit").hide();
+              $(".${n}edit-error").hide();
+              $(".${n}view").show();
+              $(".${n}first-name").val(fname);
+              $(".${n}middle-name").val(mname);
+              $(".${n}last-name").val(lname);
+              fname = "";
+              mname = "";
+              lname = "";
+          }
       }
-   });			
+   });            
 })(studentPreferredNamePortlet.jQuery);
 </script>
 
@@ -159,9 +159,9 @@ var mname = "";
 <script type="text/javascript">
 (function($) {
    $(document).ready(function() {
-	   studentPreferredNamePortlet.displayEdit(true);
-	   $(".${n}edit-error").show().delay();
-   });			
-})(studentPreferredNamePortlet.jQuery);	
+       studentPreferredNamePortlet.displayEdit(true);
+       $(".${n}edit-error").show().delay();
+   });            
+})(studentPreferredNamePortlet.jQuery);    
 </script>
 </c:if>
