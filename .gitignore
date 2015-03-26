@@ -1,5 +1,7 @@
 .project
 .settings/
 target
-.classpath
-
+.classpath/
+student-preferred-name-portlet-api/.classpath
+student-preferred-name-portlet-stored-proc-impl/.classpath
+student-preferred-name-portlet-webapp/.classpath
