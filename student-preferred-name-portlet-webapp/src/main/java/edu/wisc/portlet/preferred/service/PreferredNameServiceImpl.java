@@ -41,6 +41,9 @@ public class PreferredNameServiceImpl implements PreferredNameService {
 	@Override
 	public PreferredName getPreferredName(String pvi, String legalLastName) {
 	    PreferredName pn = dao.getPreferredName(pvi);
+	    if(pn == null) {
+	        pn = new PreferredName();
+	    }
 	    if(StringUtils.isEmpty(pn.getLastName())) {
 	      pn.setLastName(legalLastName);
 	    }
