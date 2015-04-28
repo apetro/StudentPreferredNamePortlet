@@ -10,12 +10,12 @@ import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.jdbc.core.SqlParameter;
 import org.springframework.jdbc.object.StoredProcedure;
 
-public class UnhideSourceFunction  extends StoredProcedure {
-	private static final String SQL = "msnprefname.UNHIDE_SOURCE_NAME";
-	private static final String PVI = "P_PVI_I";
-	protected static final String FUNC_RETURN = "returnname";
-	private static final String SUCCESS = "Success";
-	
+public class UnhideSourceFunction extends StoredProcedure {
+    private static final String SQL = "msnprefname.UNHIDE_SOURCE_NAME";
+    private static final String PVI = "P_PVI_I";
+    protected static final String FUNC_RETURN = "returnname";
+    private static final String SUCCESS = "Success";
+
     public UnhideSourceFunction(DataSource dataSource) {
         setDataSource(dataSource);
         setFunction(true);
@@ -23,7 +23,7 @@ public class UnhideSourceFunction  extends StoredProcedure {
         //Note that the return statement must be declared first
         declareParameter(new SqlOutParameter(FUNC_RETURN, Types.VARCHAR));
         declareParameter(new SqlParameter(PVI, Types.VARCHAR));
-        
+
         this.compile();
     }
 
@@ -31,7 +31,7 @@ public class UnhideSourceFunction  extends StoredProcedure {
         final Map<String, String> args = new HashMap<String, String>();
         args.put(PVI, pvi);
         Map<String, Object> results = execute(args);
-        String res = (String)results.get(FUNC_RETURN);
+        String res = (String) results.get(FUNC_RETURN);
         return SUCCESS.equalsIgnoreCase(res);
     }
 

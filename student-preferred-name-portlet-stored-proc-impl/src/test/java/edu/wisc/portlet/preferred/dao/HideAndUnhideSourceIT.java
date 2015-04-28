@@ -9,14 +9,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = "classpath:/integration-test-prefnameAppContext.xml")
 public class HideAndUnhideSourceIT extends HideAndUnhideSourceTestBase {
-	@Before
-	public void before() {
-		super.before();
-		this.pvi = "admin";
-	}
-	
-	@Test
-	public void testHideAndUnhide() throws Exception {
-		super.testHideAndUnhide();
-	}
+    @Before
+    public void before() {
+        super.before();
+        this.pvi = "admin";
+    }
+
+    @Test
+    public void testHideAndUnhide() throws Exception {
+        super.testHideAndUnhide();
+    }
 }
